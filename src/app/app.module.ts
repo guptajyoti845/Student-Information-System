@@ -6,20 +6,22 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatListModule} from '@angular/material/list';
 
 import {AppComponent} from './app.component';
-import {ClassService} from './service/SchoolClass.service';
-import {SchoolClassListComponent} from './school-class-list/school-class-list.component';
+import {SchoolService} from './service/SchoolClass.service';
+import {SchoolClassComponent} from './component/school-class-list/school-class.component';
 import {MatButtonModule} from '@angular/material/button';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {FormsModule} from '@angular/forms';
 import { UnlessDirective } from './unless.directive';
 import {TooltipDirective} from './shared/tooltip.directive';
+import { SectionComponent } from './component/section-list/section.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SchoolClassListComponent,
+    SchoolClassComponent,
     UnlessDirective,
-    TooltipDirective
+    TooltipDirective,
+    SectionComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +33,7 @@ import {TooltipDirective} from './shared/tooltip.directive';
     MatButtonToggleModule,
     FormsModule
   ],
-  providers: [ClassService],
+  providers: [SchoolService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

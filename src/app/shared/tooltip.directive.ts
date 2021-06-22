@@ -24,8 +24,8 @@ export class TooltipDirective {
   }
 
   @HostListener('mouseleave') onMouseLeave(): void {
-    // if (this.viewContainerRef) {
-    //   this.viewContainerRef.clear();
-    // }
+    if (this.viewContainerRef) {
+      this.viewContainerRef.clear();
+    }
   }
 }
