@@ -1,23 +1,8 @@
-<mat-list style="margin-left:30px;">
-
-  <h3 style="margin-left:30px;">Section List</h3>
-
+<ul class="section-list">
+  <h3>Section List</h3>
   <div *ngFor="let section of sections">
-
-    <mat-list-item (click)="onSectionClick(schoolClass.name, section.name)">{{ section.name }}</mat-list-item>
-
-    <mat-list style="margin-left:100px;">
-      <button appTooltipDirective [parametroPlantilla]="tooltipTemplate" mat-raised-button
-              *ngFor="let student of section.students">
-        {{student.name}}
-        <ng-template #tooltipTemplate class="class-tooltip">
-          <div style="position: absolute">
-            Name : {{student.name}}
-            Age: {{student.age}}
-          </div>
-        </ng-template>
-
-      </button>
-    </mat-list>
+    <li class="section-list__item" (click)="onSectionClick(schoolClass.name, section.name)">Section {{ section.name }}</li>
+    <app-student [section]="section" *ngIf="(section.students)"></app-student>
   </div>
-</mat-list>
+
+</ul>

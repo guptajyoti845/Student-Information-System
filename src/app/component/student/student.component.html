@@ -1,0 +1,28 @@
+<button class="student-detail" appTooltipDirective [parametroPlantilla]="tooltipTemplate" mat-raised-button
+        *ngFor="let student of section.students" #student (click)="sidebarShow = !sidebarShow">
+  {{student.name}}
+  <ng-template #tooltipTemplate>
+    <div class="student-detail__tooltip">
+      <div>Name : {{student.name}}</div>
+      <div>Age: {{student.age}}</div>
+      <div>Gender: {{student.gender}}</div>
+      <div>Sports: <span *ngFor="let sport of student.sports">{{sport}} </span></div>
+    </div>
+  </ng-template>
+
+</button>
+
+<div class="sidebar-slider" [class.sidebar-slide-in]="sidebarShow" *ngIf="currentStudent">
+  <div
+    class="sidebar-close"
+    (click)="sidebarShow = !sidebarShow"
+  >
+    X
+  </div>
+  <div class="sidebar-content">
+    <div>{{currentStudent.name}}</div>
+    <div>{{currentStudent.age}}</div>
+    <div>{{currentStudent.gender}}</div>
+  </div>
+</div>
+

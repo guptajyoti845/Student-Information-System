@@ -14,6 +14,7 @@ import {FormsModule} from '@angular/forms';
 import { UnlessDirective } from './unless.directive';
 import {TooltipDirective} from './shared/tooltip.directive';
 import { SectionComponent } from './component/section-list/section.component';
+import { StudentComponent } from './component/student/student.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { SectionComponent } from './component/section-list/section.component';
     SchoolClassComponent,
     UnlessDirective,
     TooltipDirective,
-    SectionComponent
+    SectionComponent,
+    StudentComponent
   ],
   imports: [
     BrowserModule,

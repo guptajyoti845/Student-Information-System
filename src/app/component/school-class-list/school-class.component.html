@@ -1,9 +1,10 @@
-<mat-list>
+<ul class="class-list">
   <h2>Class List</h2>
   <ng-container *ngFor="let schoolClass of schoolClasses">
-    <mat-list-item #schoolClass (click)="onClassClick(schoolClass.name)">{{schoolClass.name}}</mat-list-item>
+    <li #schoolClass (click)="onClassClick(schoolClass.name)" class="class-list__item">Class {{schoolClass.name}}</li>
     <app-section-list [sections]="schoolClass.sections" [schoolClasses]="schoolClasses"
                       [schoolClass]="schoolClass"
                       *ngIf="(schoolClass.sections && schoolClass.sections.length)"></app-section-list>
   </ng-container>
-</mat-list>
+
+</ul>

@@ -1,0 +1,56 @@
+.student-detail {
+  margin-left: 5%;
+
+  &__tooltip {
+    position: absolute;
+    left: 10%;
+    top: 150%;
+    padding: 10px;
+    background: grey;
+    box-shadow: 0 2px 1px rgba(0, 0, 0, .6);
+    overflow: auto;
+    z-index: 1000;
+  }
+
+}
+
+
+.sidebar-opener {
+  cursor: pointer;
+}
+
+.sidebar-slider {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background-color: grey;
+  transform: translateX(0%);
+  transition: ease-in-out 300ms transform;
+  width: 300px;
+}
+
+.sidebar-slider.sidebar-slide-in {
+  transform: translateX(100%);
+  transition: ease-in-out 600ms transform;
+}
+
+.sidebar-close {
+  position: fixed;
+  top: 0;
+  right: 0;
+  color: white;
+  cursor: pointer;
+  padding: 16px;
+}
+
+.sidebar-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: column;
+  color: white;
+  font-size: 16px;
+  padding: 16px;
+  height: 100%;
+}
