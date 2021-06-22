@@ -1,27 +1,13 @@
-# StudentInformationSystem
+Task 1: You have to display all the classes along with sections and students on a page. To make things easier for you, we have already grouped our /api/school?grouped=true API.
+(You can also use a combination of API's given in the table above instead of this grouped API. Or maybe you want to group yourself? Or something else? What you think 😏? Again this part is not mandatory)
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.8.
+This would be like a tree structure where in screen would look something like below:
 
-## Development server
+Class 1- [Section A, Section B]
+Section A- [Student 1, Student 2…. Student N]
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+But the problem is that the data is not sorted. See if you can sort the data based on classes, sections and student names in ascending order. Once you are done, your application might look as below.
 
-## Code scaffolding
+Task 2: On the click of a student item show a side-bar/drawer that displays the details of the student. Name and Sports are editable while others are read only. You don't have to update the original student item when you edit any textfield. Also there would be a close button on the side bar that hides the bar when clicked. Once you are done, your application might look as below.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Task 3: On the hover of the student item, show a tooltip that displays the details of the student. Once you are done, your application might look as below.
