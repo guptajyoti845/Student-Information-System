@@ -16,7 +16,7 @@ export class StudentComponent implements OnInit {
   // @ts-ignore
   @Input() section: Section;
 
-  constructor(private cfr: ChangeDetectorRef) {
+  constructor() {
   }
 
   ngOnInit(): void {
@@ -25,6 +25,5 @@ export class StudentComponent implements OnInit {
   onStudentClick(student: Student) {
     this.sidebarShow = !this.sidebarShow;
     this.currentStudent = student;
-    this.cfr.detectChanges();
   }
 }

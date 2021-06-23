@@ -1,5 +1,4 @@
 <ul class="class-list">
-  <h2>Class List</h2>
   <ng-container *ngFor="let schoolClass of schoolClasses">
     <li #schoolClass (click)="onClassClick(schoolClass.name)" class="class-list__item">Class {{schoolClass.name}}</li>
     <app-section-list [sections]="schoolClass.sections" [schoolClasses]="schoolClasses"

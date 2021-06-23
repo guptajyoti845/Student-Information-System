@@ -9,14 +9,14 @@ import {SchoolClass, Section} from '../../entity/schoolClass';
 })
 export class SchoolClassComponent implements OnInit {
 
-  constructor(private classService: SchoolService) {
+  constructor(private schoolService: SchoolService) {
   }
 
   schoolClasses: SchoolClass[] = [];
   schoolAPICall: { [key: string]: boolean } = {};
 
   ngOnInit(): void {
-    this.classService.getClasses().subscribe((schoolClasses) => {
+    this.schoolService.getSortedClasses().subscribe((schoolClasses) => {
       schoolClasses.forEach((schoolClass) => {
         const scClass: SchoolClass = {name: schoolClass, sections: []};
         this.schoolClasses.push(scClass);
@@ -31,7 +31,7 @@ export class SchoolClassComponent implements OnInit {
     this.schoolAPICall[schoolClassName] = true;
     const classId = +schoolClassName;
 
-    this.classService.getSectionForAClass(schoolClassName).subscribe(sections => {
+    this.schoolService.getSortedSections(schoolClassName).subscribe(sections => {
       sections.forEach(section => {
 
         // tslint:disable-next-line:variable-name

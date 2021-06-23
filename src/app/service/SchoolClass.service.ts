@@ -11,27 +11,46 @@ export class SchoolService {
   constructor(private httpClient: HttpClient) {
   }
 
-  getClasses(): Observable<string[]> {
+  getSortedClasses(): Observable<string[]> {
 
     const classURL = `${this.baseURL}/api/school/classes`;
+
     return this.httpClient.get<GetClassResponse>(classURL).pipe(
-      map(response => response.classes)
+      map(response => response.classes),
+      map(arr => arr.sort((a: string, b: string) => Number(a) - Number(b)))
     );
   }
 
-  getSectionForAClass(classId: string): Observable<string[]> {
+  getSortedSections(classId: string): Observable<string[]> {
 
     const sectionURL = `${this.baseURL}/api/school/classes/${classId}/sections`;
     return this.httpClient.get<GetSectionResponse>(sectionURL).pipe(
-      map(response => response.sections)
+      map(response => response.sections),
+      map(arr => arr.sort())
     );
   }
 
-  getStudentForSection(classId: number, sectionId: string): Observable<Student[]> {
+  getSortedStudents(classId: number, sectionId: string): Observable<Student[]> {
 
     const studentURL = `${this.baseURL}/api/school/classes/${classId}/sections/${sectionId}`;
     return this.httpClient.get<GetStudentResponse>(studentURL).pipe(
-      map(response => response.students)
+      map(response => response.students),
+      map(arr => arr.sort((a: Student, b: Student) => {
+
+        // @ts-ignore
+        const nameA = a.name.toUpperCase();
+
+        // @ts-ignore
+        const nameB = b.name.toUpperCase();
+        if (nameA < nameB) {
+          return -1;
+        }
+        if (nameA > nameB) {
+          return 1;
+        }
+        return 0;
+
+      }))
     );
   }
 }

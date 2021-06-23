@@ -38,7 +38,7 @@ export class SectionComponent implements OnInit {
     }
     this.studentsAPICall[className + sectionName] = true;
     const classId = +className;
-    this.schoolService.getStudentForSection(classId, sectionName).subscribe(students => {
+    this.schoolService.getSortedStudents(classId, sectionName).subscribe(students => {
 
       // @ts-ignore
       this._schoolClasses[classId - 1].sections.forEach(section => {
