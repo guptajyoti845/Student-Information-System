@@ -10,13 +10,13 @@ import {SchoolService} from './service/SchoolClass.service';
 import {SchoolClassComponent} from './component/school-class-list/school-class.component';
 import {MatButtonModule} from '@angular/material/button';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
-import {FormsModule} from '@angular/forms';
-import { UnlessDirective } from './unless.directive';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {UnlessDirective} from './unless.directive';
 import {TooltipDirective} from './shared/tooltip.directive';
-import { SectionComponent } from './component/section-list/section.component';
-import { StudentComponent } from './component/student/student.component';
+import {SectionComponent} from './component/section-list/section.component';
+import {StudentComponent} from './component/student/student.component';
 import {CommonModule} from '@angular/common';
-import { SlideDrawerComponent } from './component/slide-drawer/slide-drawer.component';
+import {SlideDrawerComponent} from './component/slide-drawer/slide-drawer.component';
 
 @NgModule({
   declarations: [
@@ -32,12 +32,12 @@ import { SlideDrawerComponent } from './component/slide-drawer/slide-drawer.comp
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    MatListModule,
     BrowserAnimationsModule,
     MatButtonModule,
     MatButtonToggleModule,
     FormsModule,
-    CommonModule
+    CommonModule,
+    ReactiveFormsModule
   ],
   providers: [SchoolService],
   bootstrap: [AppComponent]
