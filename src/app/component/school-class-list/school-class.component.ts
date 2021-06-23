@@ -13,7 +13,7 @@ export class SchoolClassComponent implements OnInit {
   }
 
   schoolClasses: SchoolClass[] = [];
-  condition = true;
+  schoolAPICall: { [key: string]: boolean } = {};
 
   ngOnInit(): void {
     this.classService.getClasses().subscribe((schoolClasses) => {
@@ -25,6 +25,10 @@ export class SchoolClassComponent implements OnInit {
   }
 
   onClassClick(schoolClassName: string): void {
+    if (this.schoolAPICall[schoolClassName]) {
+      return;
+    }
+    this.schoolAPICall[schoolClassName] = true;
     const classId = +schoolClassName;
 
     this.classService.getSectionForAClass(schoolClassName).subscribe(sections => {

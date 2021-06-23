@@ -23,7 +23,6 @@ export class StudentComponent implements OnInit {
   }
 
   onStudentClick(student: Student) {
-    console.log('onstudent Click');
     this.sidebarShow = !this.sidebarShow;
     this.currentStudent = student;
     this.cfr.detectChanges();

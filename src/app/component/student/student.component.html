@@ -11,19 +11,20 @@
   </ng-template>
 
 </button>
-{{sidebarShow}}
 
-<div class="sidebar-slider" [ngClass]="{'sidebar-slide-in': sidebarShow}" *ngIf="currentStudent" (click)="$event.stopPropagation()">
+<div class="sidebar-slider" [ngClass]="{'sidebar-slider__sidebar-slide-in': sidebarShow}" *ngIf="currentStudent"
+     (click)="$event.stopPropagation()">
   <div
-    class="sidebar-close"
+    class="sidebar-slider__sidebar-close"
     (click)="sidebarShow = !sidebarShow"
   >
     X
   </div>
-  <div class="sidebar-content">
+  <div class="sidebar-slider__sidebar-content">
     <div>{{currentStudent.name}}</div>
     <div>{{currentStudent.age}}</div>
     <div>{{currentStudent.gender}}</div>
+    <div>{{currentStudent.sports}}</div>
   </div>
 </div>
 
