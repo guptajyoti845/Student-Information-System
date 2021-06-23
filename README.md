@@ -11,3 +11,11 @@ But the problem is that the data is not sorted. See if you can sort the data bas
 **Task 2:** On the click of a student item show a side-bar/drawer that displays the details of the student. Name and Sports are editable while others are read only. You don't have to update the original student item when you edit any textfield. Also there would be a close button on the side bar that hides the bar when clicked. Once you are done, your application might look as below.
 
 **Task 3:** On the hover of the student item, show a tooltip that displays the details of the student. Once you are done, your application might look as below.
+
+
+**
+Run Application: **
+
+
+npm install
+ng serve --port 4200
