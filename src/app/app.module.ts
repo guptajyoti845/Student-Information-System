@@ -16,6 +16,7 @@ import {TooltipDirective} from './shared/tooltip.directive';
 import { SectionComponent } from './component/section-list/section.component';
 import { StudentComponent } from './component/student/student.component';
 import {CommonModule} from '@angular/common';
+import { SlideDrawerComponent } from './component/slide-drawer/slide-drawer.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import {CommonModule} from '@angular/common';
     UnlessDirective,
     TooltipDirective,
     SectionComponent,
-    StudentComponent
+    StudentComponent,
+    SlideDrawerComponent
   ],
   imports: [
     BrowserModule,

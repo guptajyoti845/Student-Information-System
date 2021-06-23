@@ -1,0 +1,16 @@
+<div class="sidebar-slider" [ngClass]="{'sidebar-slider__sidebar-slide-in': sidebarShow}" *ngIf="student"
+     (click)="$event.stopPropagation()">
+  <div
+    class="sidebar-slider__sidebar-close"
+    (click)="sidebarShow = !sidebarShow"
+  >
+    X
+  </div>
+  <div class="sidebar-slider__sidebar-content">
+    <div>{{student.name}}</div>
+    <div>{{student.age}}</div>
+    <div>{{student.gender}}</div>
+    <div>{{student.sports}}</div>
+  </div>
+</div>
+

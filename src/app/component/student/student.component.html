@@ -11,20 +11,4 @@
   </ng-template>
 
 </button>
-
-<div class="sidebar-slider" [ngClass]="{'sidebar-slider__sidebar-slide-in': sidebarShow}" *ngIf="currentStudent"
-     (click)="$event.stopPropagation()">
-  <div
-    class="sidebar-slider__sidebar-close"
-    (click)="sidebarShow = !sidebarShow"
-  >
-    X
-  </div>
-  <div class="sidebar-slider__sidebar-content">
-    <div>{{currentStudent.name}}</div>
-    <div>{{currentStudent.age}}</div>
-    <div>{{currentStudent.gender}}</div>
-    <div>{{currentStudent.sports}}</div>
-  </div>
-</div>
-
+<app-slide-drawer [student]="currentStudent" [sidebarShow]="sidebarShow"></app-slide-drawer>
