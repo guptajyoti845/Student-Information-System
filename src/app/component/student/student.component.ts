@@ -1,4 +1,4 @@
-import {Component, Input, OnInit, ViewChild} from '@angular/core';
+import {ChangeDetectorRef, Component, Input, OnInit, ViewChild} from '@angular/core';
 import {Section, Student} from '../../entity/schoolClass';
 
 @Component({
@@ -7,18 +7,25 @@ import {Section, Student} from '../../entity/schoolClass';
   styleUrls: ['./student.component.scss']
 })
 export class StudentComponent implements OnInit {
-// @ts-ignore
-  @ViewChild('student') currentStudent: Student;
+
+  // @ts-ignore
+  public currentStudent: Student;
 
   public sidebarShow: boolean = false;
 
   // @ts-ignore
   @Input() section: Section;
 
-  constructor() {
+  constructor(private cfr: ChangeDetectorRef) {
   }
 
   ngOnInit(): void {
   }
 
+  onStudentClick(student: Student) {
+    console.log('onstudent Click');
+    this.sidebarShow = !this.sidebarShow;
+    this.currentStudent = student;
+    this.cfr.detectChanges();
+  }
 }

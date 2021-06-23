@@ -15,6 +15,7 @@ import { UnlessDirective } from './unless.directive';
 import {TooltipDirective} from './shared/tooltip.directive';
 import { SectionComponent } from './component/section-list/section.component';
 import { StudentComponent } from './component/student/student.component';
+import {CommonModule} from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { StudentComponent } from './component/student/student.component';
     BrowserAnimationsModule,
     MatButtonModule,
     MatButtonToggleModule,
-    FormsModule
+    FormsModule,
+    CommonModule
   ],
   providers: [SchoolService],
   bootstrap: [AppComponent]

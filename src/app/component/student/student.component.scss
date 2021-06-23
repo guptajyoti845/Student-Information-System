@@ -25,13 +25,13 @@
   right: 0;
   bottom: 0;
   background-color: grey;
-  transform: translateX(0%);
+  transform: translateX(100%);
   transition: ease-in-out 300ms transform;
   width: 300px;
 }
 
 .sidebar-slider.sidebar-slide-in {
-  transform: translateX(100%);
+  transform: translateX(0%);
   transition: ease-in-out 600ms transform;
 }
 

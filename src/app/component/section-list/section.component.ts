@@ -22,6 +22,8 @@ export class SectionComponent implements OnInit {
   // tslint:disable-next-line:variable-name
   _schoolClasses: SchoolClass[];
 
+  studentsAPICall: { [key: string]: boolean } = {};
+
   constructor(private schoolService: SchoolService) {
   }
 
@@ -30,6 +32,11 @@ export class SectionComponent implements OnInit {
   }
 
   onSectionClick(className: string, sectionName: string): void {
+
+    if (this.studentsAPICall[className + sectionName]) {
+      return;
+    }
+    this.studentsAPICall[className + sectionName] = true;
     const classId = +className;
     this.schoolService.getStudentForSection(classId, sectionName).subscribe(students => {
 

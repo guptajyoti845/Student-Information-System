@@ -1,5 +1,5 @@
 <button class="student-detail" appTooltipDirective [parametroPlantilla]="tooltipTemplate" mat-raised-button
-        *ngFor="let student of section.students" #student (click)="sidebarShow = !sidebarShow">
+        *ngFor="let student of section.students" (click)="onStudentClick(student)">
   {{student.name}}
   <ng-template #tooltipTemplate>
     <div class="student-detail__tooltip">
@@ -11,8 +11,9 @@
   </ng-template>
 
 </button>
+{{sidebarShow}}
 
-<div class="sidebar-slider" [class.sidebar-slide-in]="sidebarShow" *ngIf="currentStudent">
+<div class="sidebar-slider" [ngClass]="{'sidebar-slide-in': sidebarShow}" *ngIf="currentStudent" (click)="$event.stopPropagation()">
   <div
     class="sidebar-close"
     (click)="sidebarShow = !sidebarShow"
