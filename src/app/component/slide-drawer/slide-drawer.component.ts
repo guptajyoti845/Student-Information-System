@@ -1,7 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Student} from '../../entity/schoolClass';
-import {FormArray, FormControl, FormGroup, Validators} from '@angular/forms';
-import {Observable} from 'rxjs';
+import {FormControl, FormGroup} from '@angular/forms';
 
 @Component({
   selector: 'app-slide-drawer',
@@ -19,6 +18,7 @@ export class SlideDrawerComponent implements OnInit {
   genders = ['male', 'female'];
   // @ts-ignore
   studentForm: FormGroup;
+
   constructor() {
   }
 
