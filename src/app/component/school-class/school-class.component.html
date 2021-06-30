@@ -1,9 +1,39 @@
+<!--
 <ul class="class-list">
   <ng-container *ngFor="let schoolClass of schoolClasses">
-    <li #schoolClass (click)="onClassClick(schoolClass.name)" class="class-list__item">Class {{schoolClass.name}}</li>
+    <li (click)="onClassClick(schoolClass.name)" class="class-list__item">Class {{schoolClass.name}}</li>
     <app-section-list [sections]="schoolClass.sections" [schoolClasses]="schoolClasses"
                       [schoolClass]="schoolClass"
                       *ngIf="(schoolClass.sections && schoolClass.sections.length)"></app-section-list>
   </ng-container>
 
 </ul>
+-->
+
+<mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
+  <!-- Leaf node -->
+  <!-- <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding>
+    <button mat-icon-button disabled></button>
+    {{node.item}}
+  </mat-tree-node> -->
+
+  <!-- expandable node -->
+  <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding>
+
+    <button mat-icon-button
+            [attr.aria-label]="'toggle ' + node.fileName"
+            (click)="loadChildren(node)"
+            matTreeNodeToggle>
+      <mat-icon class="mat-icon-rtl-mirror">
+        {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+      </mat-icon>
+    </button>
+    {{node.item.name}}
+  </mat-tree-node>
+
+ <!-- <mat-tree-node *matTreeNodeDef="let node; when: isLoadMore">
+    <button mat-button (click)="loadMore(node.loadMoreParentItem)">
+      Load more...
+    </button>
+  </mat-tree-node>-->
+</mat-tree>

@@ -1,6 +1,6 @@
 <ul class="section-list">
   <div *ngFor="let section of sections">
-    <li class="section-list__item" (click)="onSectionClick(schoolClass.name, section.name)">
+    <li class="section-list__item" (click)="getStudents(schoolClass.name, section.name)">
       Section {{ section.name }}</li>
     <app-student [section]="section" *ngIf="(section.students)"></app-student>
   </div>

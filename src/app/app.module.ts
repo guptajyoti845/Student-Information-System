@@ -16,6 +16,9 @@ import {SectionComponent} from './component/section/section.component';
 import {StudentComponent} from './component/student/student.component';
 import {CommonModule} from '@angular/common';
 import {SlideDrawerComponent} from './component/slide-drawer/slide-drawer.component';
+import {MatTreeModule} from '@angular/material/tree';
+import { StoreModule } from '@ngrx/store';
+import {MatIconModule} from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -36,7 +39,10 @@ import {SlideDrawerComponent} from './component/slide-drawer/slide-drawer.compon
     MatButtonToggleModule,
     FormsModule,
     CommonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatTreeModule,
+    StoreModule.forRoot({}, {}),
+    MatIconModule
   ],
   providers: [SchoolService],
   bootstrap: [AppComponent]
