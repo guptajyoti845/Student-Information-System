@@ -1,9 +1,7 @@
-<mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
-  <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding
-  >
-
+<mat-tree [dataSource]="dataSource" [treeControl]="treeControl" class="classList">
+  <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding>
     <button mat-icon-button
-            [ngClass]="{student_btn: node.level === 2}"
+            [ngClass]="{classList__student_btn: node.level === 2}"
             [attr.aria-label]="'toggle ' + node.fileName"
             (click)="loadChildren(node)"
             matTreeNodeToggle>
@@ -11,11 +9,13 @@
         {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
       </mat-icon>
     </button>
-    <span *ngIf="node.level !==2">{{node.item.name}}</span>
+    <span *ngIf="node.level !==2 else studentDetail">{{node.item.name}}</span>
 
-    <span *ngIf="node.level === 2" appTooltipDirective [tooltipTemplate]="studentTooltip">{{node.item.name}}</span>
+    <ng-template #studentDetail><span class="classList__student" appTooltipDirective
+                                      [tooltipTemplate]="studentTooltip">{{node.item.name}}</span>
+    </ng-template>
     <ng-template #studentTooltip>
-      <div>
+      <div class="classList__student__tooltip_details">
         <div>Name : {{node.item.name}}</div>
         <div>Age: {{node.item.age}}</div>
         <div>Gender: {{node.item.gender}}</div>

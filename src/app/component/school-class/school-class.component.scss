@@ -1,9 +1,28 @@
-mat-tree {
+.classList {
   margin-left: 40px;
-}
 
-.student_btn {
-  display: none;
+  &__student_btn {
+    display: none;
+  }
+
+  &__student {
+    position: relative;
+
+    &__tooltip_details {
+      position: absolute;
+      left: 5%;
+      top: 100%;
+      padding: 10px;
+      background: grey;
+      box-shadow: 0 2px 1px rgba(0, 0, 0, .6);
+      overflow: auto;
+      z-index: 1000;
+      color: white;
+      min-width: 150px;
+    }
+
+  }
+
 }
 
 .overlay {
@@ -22,16 +41,4 @@ mat-tree {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-}
-
-.student_tooltip{
-  position: absolute;
-  left: 10%;
-  top: 150%;
-  padding: 10px;
-  background: grey;
-  box-shadow: 0 2px 1px rgba(0, 0, 0, .6);
-  overflow: auto;
-  z-index: 1000;
-  color: white;
 }
