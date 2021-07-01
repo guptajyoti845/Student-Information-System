@@ -4,7 +4,8 @@ import {LoadMoreFlatNode, LoadMoreNode, SchoolClass, Section, Student, Type} fro
 import {FlatTreeControl} from '@angular/cdk/tree';
 import {MatTreeFlatDataSource, MatTreeFlattener} from '@angular/material/tree';
 import {LoadMoreDatabase} from '../../service/loadMoreDatabase.service';
-import {Observable} from 'rxjs';
+import {Observable, Subject} from 'rxjs';
+import {LoaderService} from '../../service/loader.service';
 
 @Component({
   selector: 'app-school-class-list',
@@ -12,6 +13,7 @@ import {Observable} from 'rxjs';
   styleUrls: ['./school-class.component.scss']
 })
 export class SchoolClassComponent implements OnInit {
+  isLoading: Subject<boolean> = this.loader.isLoading;
 
   nodeMap = new Map<string, LoadMoreFlatNode>();
 
@@ -24,7 +26,7 @@ export class SchoolClassComponent implements OnInit {
   // @ts-ignore
   public dataSource: MatTreeFlatDataSource<LoadMoreNode, LoadMoreFlatNode>;
 
-  constructor(private schoolService: SchoolService, private service: LoadMoreDatabase) {
+  constructor(private schoolService: SchoolService, private service: LoadMoreDatabase, private loader: LoaderService) {
     this.treeFlattener = new MatTreeFlattener(
       this.transformer,
       this.getLevel,
@@ -43,8 +45,8 @@ export class SchoolClassComponent implements OnInit {
     );
 
     service.dataChange.subscribe(data => {
-      console.log('Set Data Source');
       this.dataSource.data = data;
+
     });
 
     service.initialize();
