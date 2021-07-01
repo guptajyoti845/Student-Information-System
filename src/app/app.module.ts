@@ -11,7 +11,6 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {UnlessDirective} from './unless.directive';
-import {TooltipDirective} from './shared/tooltip.directive';
 import {SectionComponent} from './component/section/section.component';
 import {StudentComponent} from './component/student/student.component';
 import {CommonModule} from '@angular/common';
@@ -21,16 +20,18 @@ import {StoreModule} from '@ngrx/store';
 import {MatIconModule} from '@angular/material/icon';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {LoaderInterceptor} from './service/loader.interceptor';
+import {MatTooltipModule} from '@angular/material/tooltip';
+import {TooltipDirective} from './shared/tooltip.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
     SchoolClassComponent,
     UnlessDirective,
-    TooltipDirective,
     SectionComponent,
     StudentComponent,
-    SlideDrawerComponent
+    SlideDrawerComponent,
+    TooltipDirective
   ],
   imports: [
     BrowserModule,
@@ -45,7 +46,8 @@ import {LoaderInterceptor} from './service/loader.interceptor';
     MatTreeModule,
     MatIconModule,
     MatProgressSpinnerModule,
-    StoreModule.forRoot({}, {})
+    StoreModule.forRoot({}, {}),
+    MatTooltipModule
   ],
   providers: [SchoolService,
 

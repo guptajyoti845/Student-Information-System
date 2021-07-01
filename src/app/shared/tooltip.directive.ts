@@ -12,13 +12,14 @@ export class TooltipDirective {
   }
 
   // @ts-ignore
-  @Input() parametroPlantilla: TemplateRef<any>;
+  @Input() tooltipTemplate: TemplateRef<any>;
 
   // @ts-ignore
   @ContentChild('tooltipTemplate') private tooltipTemplateRef: TemplateRef<object>;
 
   @HostListener('mouseenter') onMouseEnter(): void {
-    const view = this.viewContainerRef.createEmbeddedView(this.tooltipTemplateRef);
+    console.log('this.tooltipTemplate', this.tooltipTemplate);
+    const view = this.viewContainerRef.createEmbeddedView(this.tooltipTemplate);
     view.rootNodes.forEach(node =>
       this.renderer.appendChild(this.elementRef.nativeElement, node));
   }

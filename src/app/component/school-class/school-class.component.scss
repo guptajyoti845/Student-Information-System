@@ -1,81 +1,37 @@
-.example-tree-progress-bar {
-  margin-left: 30px;
-}
-
-.example-tree-nested-node {
-  padding-left: 30px;
-}
-
 mat-tree {
   margin-left: 40px;
 }
 
-.mat-tree-node {
-  padding: 0;
-  background-color: white;
-}
-
-.mat-nested-tree-node {
-  top: -24px;
-}
-
-ul, li {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-li.example-tree-container {
-  border-bottom: 0;
-}
-
-ul {
-  padding-left: 40px;
-}
-
-li {
-  padding-left: 40px;
-  border: 1px dotted grey;
-  border-width: 0 0 1px 1px;
-  position: relative;
-  top: -24px;
-}
-
-li.mat-tree-node,
-li div {
-  margin: 0;
-  position: relative;
-  top: 24px;
-}
-
-li ul {
-  border-top: 1px dotted grey;
-  margin-left: -40px;
-  padding-left: 60px;
-}
-
-.mat-nested-tree-node:last-child ul {
-  border-left: 1px solid white;
-  margin-left: -41px;
-}
-
-.mat-icon-button {
-  z-index: 100;
+.student_btn {
+  display: none;
 }
 
 .overlay {
-  position:fixed;
-  display:block;
-  width:100%;
-  height:100%;
-  top:0;
-  left:0;
-  background-color:rgba(74,74,74,.8);
-  z-index:99999;
+  position: fixed;
+  display: block;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(74, 74, 74, .8);
+  z-index: 99999;
 }
+
 .spinner {
-  position:absolute;
-  top:50%;
-  left:50%;
-  transform: translate(-50%,-50%);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.student_tooltip{
+  position: absolute;
+  left: 10%;
+  top: 150%;
+  padding: 10px;
+  background: grey;
+  box-shadow: 0 2px 1px rgba(0, 0, 0, .6);
+  overflow: auto;
+  z-index: 1000;
+  color: white;
 }
