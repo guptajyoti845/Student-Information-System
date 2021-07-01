@@ -6,8 +6,6 @@ import {MatTreeFlatDataSource, MatTreeFlattener} from '@angular/material/tree';
 import {LoadMoreDatabase} from '../../service/loadMoreDatabase.service';
 import {Observable} from 'rxjs';
 
-const LOAD_MORE = 'LOAD_MORE';
-
 @Component({
   selector: 'app-school-class-list',
   templateUrl: './school-class.component.html',
@@ -84,21 +82,12 @@ export class SchoolClassComponent implements OnInit {
     return node.expandable;
   };
 
-  hasChild = (_: number, _nodeData: LoadMoreFlatNode) => _nodeData.expandable;
-
-  /** Load more nodes from data source */
-  // loadMore(item: string) {
-  //   console.log('load more');
-  //   this.service.loadMore(item, Type.Section);
-  // }
-
   loadChildren(node: LoadMoreFlatNode) {
     console.log('load more children');
     console.log('node', node);
     if (node.level === 0) {
       this.getSections(node);
     } else if (node.level === 1) {
-      //const className = (<Section> node.item).className;
       this.getStudents(node);
     }
 

@@ -3,9 +3,6 @@ import {BehaviorSubject} from 'rxjs';
 import {LoadMoreNode, SchoolClass, Section, Student, Type} from '../entity/schoolClass';
 import {SchoolService} from './SchoolClass.service';
 
-const LOAD_MORE = 'LOAD_MORE';
-
-
 @Injectable({
   providedIn: 'root'
 })
@@ -18,7 +15,6 @@ export class LoadMoreDatabase {
   }
 
   rootLevelNodes: string[] = [];
-  dataMap = new Map<string, any[]>([]);
   classData: SchoolClass[] = [];
 
   initialize() {
@@ -46,23 +42,22 @@ export class LoadMoreDatabase {
       if (!req_class) {
         return;
       }
+
       // @ts-ignore
       children = req_class.sections;
     } else {
       const req_class = this.classData.find(value => value.name === className);
 
       // @ts-ignore
-      const req_section = req_class.find(value => value.name === item);
+      const req_section = req_class.sections.find(value => value.name === item);
 
+      // @ts-ignore
       children = req_section.students;
     }
 
     const newChildrenNumber = parent.children!.length + this.batchNumber;
+    // @ts-ignore
     const nodes = children.slice(0, newChildrenNumber).map((value: Student | Section) => this._generateNode(value));
-    // if (newChildrenNumber < children.length) {
-    //   // Need a new load more node
-    //   nodes.push(new LoadmoreNode(LOAD_MORE, false, item));
-    // }
 
     parent.childrenChange.next(nodes);
     this.dataChange.next(this.dataChange.value);
@@ -72,7 +67,6 @@ export class LoadMoreDatabase {
     if (this.nodeMap.has(item.id)) {
       return this.nodeMap.get(item.id)!;
     }
-    //const req_class = this.classData.find(value => value.name === item);
     const result = new LoadMoreNode(item, true);
     this.nodeMap.set(item.id, result);
     return result;
