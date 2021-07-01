@@ -62,7 +62,7 @@ export class SchoolClassComponent implements OnInit {
     node.childrenChange;
 
   transformer = (node: LoadMoreNode, level: number) => {
-    const existingNode = this.nodeMap.get(node.item.name);
+    const existingNode = this.nodeMap.get(node.item.id);
 
     if (existingNode) {
       return existingNode;
@@ -74,14 +74,13 @@ export class SchoolClassComponent implements OnInit {
       node.hasChildren,
       node.loadMoreParentItem
     );
-    this.nodeMap.set(node.item.toString(), newNode);
+    this.nodeMap.set(node.item.id, newNode);
     return newNode;
   };
 
   getLevel = (node: LoadMoreFlatNode) => node.level;
 
   isExpandable = (node: LoadMoreFlatNode) => {
-    console.log("node.expandable", node.expandable);
     return node.expandable;
   };
 

@@ -41,8 +41,8 @@ import {MatIconModule} from '@angular/material/icon';
     CommonModule,
     ReactiveFormsModule,
     MatTreeModule,
-    StoreModule.forRoot({}, {}),
-    MatIconModule
+    MatIconModule,
+    StoreModule.forRoot({}, {})
   ],
   providers: [SchoolService],
   bootstrap: [AppComponent]

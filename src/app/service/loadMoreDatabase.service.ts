@@ -26,7 +26,7 @@ export class LoadMoreDatabase {
       schoolClasses.forEach(schoolClass => {
         const scClass: SchoolClass = {name: schoolClass.toString(), sections: [], id: Math.random().toString()};
         this.classData.push(scClass);
-        this.rootLevelNodes.push(scClass.name);
+        this.rootLevelNodes.push(scClass.id);
       });
       const data = this.classData.map(item => this._generateNode(item));
       this.dataChange.next(data);

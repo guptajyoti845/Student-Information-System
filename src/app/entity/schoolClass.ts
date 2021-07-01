@@ -1,7 +1,7 @@
 import {BehaviorSubject} from 'rxjs';
 
 export interface Student {
-  id:string;
+  id: string;
   name: string;
   class?: number;
   gender: string;
@@ -19,7 +19,7 @@ export interface Section {
 }
 
 export interface SchoolClass {
-  id:string;
+  id: string;
   name: string;
   sections: Section[];
 }
