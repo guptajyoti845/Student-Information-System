@@ -1,1 +1,54 @@
-<app-school-class-list></app-school-class-list>
+<mat-drawer-container class="example-container" autosize>
+  <mat-drawer #drawer class="example-sidenav" mode="push" position="end">
+    <div *ngIf="student">
+      {{student.name}}
+
+      <form [formGroup]="studentForm" (ngSubmit)="onSubmit()">
+        <div class="form-group sidebar-slider__sidebar-content__fields">
+          <label for="username">Name</label>
+          <input type="text"
+                 class="form-control"
+                 id="username"
+                 formControlName="username">
+        </div>
+
+        <div class="form-group sidebar-slider__sidebar-content__fields">
+          <label for="age">Age</label>
+          <input type="number"
+                 class="form-control"
+                 id="age"
+                 formControlName="age"
+          >
+        </div>
+
+        <div class="form-group sidebar-slider__sidebar-content__fields">
+          <label for="gender">Gender</label>
+          <input type="text"
+                 class="form-control"
+                 id="gender"
+                 formControlName="gender"
+          >
+        </div>
+
+        <div class="form-group sidebar-slider__sidebar-content__fields">
+          <label for="sports">Sports</label>
+          <input type="text"
+                 class="form-control"
+                 id="sports"
+                 formControlName="sports">
+        </div>
+
+        <button class="btn btn-primary" type="submit">Submit</button>
+
+      </form>
+    </div>
+    <button (click)="showFiller = !showFiller" mat-raised-button>
+      Toggle extra text
+    </button>
+  </mat-drawer>
+
+  <mat-drawer-content class="example-sidenav-content">
+    <app-school-class-list (student)="getStudent($event)" [updatedStudent]=student></app-school-class-list>
+  </mat-drawer-content>
+
+</mat-drawer-container>

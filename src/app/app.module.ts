@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {AppRoutingModule} from './app-routing.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
@@ -11,23 +11,31 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {UnlessDirective} from './unless.directive';
-import {TooltipDirective} from './shared/tooltip.directive';
 import {SectionComponent} from './component/section/section.component';
 import {StudentComponent} from './component/student/student.component';
 import {CommonModule} from '@angular/common';
 import {SlideDrawerComponent} from './component/slide-drawer/slide-drawer.component';
+import {MatTreeModule} from '@angular/material/tree';
+import {StoreModule} from '@ngrx/store';
+import {MatIconModule} from '@angular/material/icon';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {LoaderInterceptor} from './service/loader.interceptor';
+import {MatTooltipModule} from '@angular/material/tooltip';
+import {TooltipDirective} from './shared/tooltip.directive';
+import {MatSidenavModule} from '@angular/material/sidenav';
 
 @NgModule({
   declarations: [
     AppComponent,
     SchoolClassComponent,
     UnlessDirective,
-    TooltipDirective,
     SectionComponent,
     StudentComponent,
-    SlideDrawerComponent
+    SlideDrawerComponent,
+    TooltipDirective
   ],
   imports: [
+    MatSidenavModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
@@ -36,9 +44,17 @@ import {SlideDrawerComponent} from './component/slide-drawer/slide-drawer.compon
     MatButtonToggleModule,
     FormsModule,
     CommonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatTreeModule,
+    MatIconModule,
+    MatProgressSpinnerModule,
+    StoreModule.forRoot({}, {}),
+    MatTooltipModule
   ],
-  providers: [SchoolService],
+  providers: [SchoolService,
+
+    {provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

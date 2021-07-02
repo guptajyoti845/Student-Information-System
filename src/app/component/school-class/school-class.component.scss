@@ -1,23 +1,33 @@
-.class-list{
- margin: auto 150px;
+.classList {
+  background-color: #fafafa;
 
-  &__item{
-    margin: 30px;
+  &__student_btn {
+    display: none;
   }
-}
-/*
 
-[tooltipDirective] {
-  position: relative;
+  &__student {
+    position: relative;
+
+    &__tooltip_details {
+      position: absolute;
+      left: 5%;
+      top: 100%;
+      padding: 10px;
+      background: grey;
+      box-shadow: 0 2px 1px rgba(0, 0, 0, .6);
+      overflow: auto;
+      z-index: 1000;
+      color: white;
+      min-width: 150px;
+    }
+
+  }
+
 }
 
-.app-tooltip {
+.spinner {
   position: absolute;
-  bottom: 100%;
-  left: 0;
-  padding: 10px;
-  background: red;
-  box-shadow: 0 2px 1px rgba(0,0,0,.6);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
-
-*/

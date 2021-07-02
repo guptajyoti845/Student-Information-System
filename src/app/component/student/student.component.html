@@ -1,4 +1,4 @@
-<button class="student-detail" appTooltipDirective [parametroPlantilla]="tooltipTemplate" mat-raised-button
+<button class="student-detail" appTooltipDirective [tooltipTemplate]="tooltipTemplate" mat-raised-button
         *ngFor="let student of section.students" (click)="onStudentClick(student)">
   {{student.name}}
   <ng-template #tooltipTemplate>

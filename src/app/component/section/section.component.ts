@@ -31,7 +31,7 @@ export class SectionComponent implements OnInit {
     this._schoolClasses = this.schoolClasses;
   }
 
-  onSectionClick(className: string, sectionName: string): void {
+  getStudents(className: string, sectionName: string): void {
 
     if (this.studentsAPICall[className + sectionName]) {
       return;

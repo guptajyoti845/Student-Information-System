@@ -1,9 +1,30 @@
-<ul class="class-list">
-  <ng-container *ngFor="let schoolClass of schoolClasses">
-    <li #schoolClass (click)="onClassClick(schoolClass.name)" class="class-list__item">Class {{schoolClass.name}}</li>
-    <app-section-list [sections]="schoolClass.sections" [schoolClasses]="schoolClasses"
-                      [schoolClass]="schoolClass"
-                      *ngIf="(schoolClass.sections && schoolClass.sections.length)"></app-section-list>
-  </ng-container>
+<mat-tree [dataSource]="dataSource" [treeControl]="treeControl" class="classList">
+  <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding>
+    <button mat-icon-button
+            [ngClass]="{classList__student_btn: node.level === 2}"
+            [attr.aria-label]="'toggle ' + node.fileName"
+            (click)="loadChildren(node)"
+            matTreeNodeToggle>
+      <mat-icon class="mat-icon-rtl-mirror">
+        {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+      </mat-icon>
+    </button>
+    <span *ngIf="node.level !==2 else studentDetail">{{node.item.name}}</span>
 
-</ul>
+    <ng-template #studentDetail><span class="classList__student" appTooltipDirective
+                                      [tooltipTemplate]="studentTooltip" (click)="openDrawer(node)">{{node.item.name}}</span>
+    </ng-template>
+    <ng-template #studentTooltip>
+      <div class="classList__student__tooltip_details">
+        <div>Name : {{node.item.name}}</div>
+        <div>Age: {{node.item.age}}</div>
+        <div>Gender: {{node.item.gender}}</div>
+        <div>Sports: <span *ngFor="let sport of node.item.sports">{{sport}} </span></div>
+      </div>
+    </ng-template>
+  </mat-tree-node>
+</mat-tree>
+
+<div *ngIf="isLoading| async">
+  <mat-spinner class="spinner"></mat-spinner>
+</div>
