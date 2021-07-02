@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
 import {SchoolService} from '../../service/SchoolClass.service';
 import {LoadMoreFlatNode, LoadMoreNode, SchoolClass, Section, Student, Type} from '../../entity/schoolClass';
 import {FlatTreeControl} from '@angular/cdk/tree';
@@ -12,12 +12,18 @@ import {LoaderService} from '../../service/loader.service';
   templateUrl: './school-class.component.html',
   styleUrls: ['./school-class.component.scss']
 })
-export class SchoolClassComponent implements OnInit {
+export class SchoolClassComponent implements OnInit, OnChanges {
+
+  // @ts-ignore
+  @Input() updatedStudent: Student;
+
+  @Output() student = new EventEmitter<Student>();
+
   isLoading: Subject<boolean> = this.loader.isLoading;
 
   nodeMap = new Map<string, LoadMoreFlatNode>();
-
   // @ts-ignore
+
   public treeControl: FlatTreeControl<LoadMoreFlatNode>;
 
   // @ts-ignore
@@ -25,6 +31,8 @@ export class SchoolClassComponent implements OnInit {
 
   // @ts-ignore
   public dataSource: MatTreeFlatDataSource<LoadMoreNode, LoadMoreFlatNode>;
+
+  schoolClasses: SchoolClass[] = [];
 
   constructor(private schoolService: SchoolService, private service: LoadMoreDatabase, private loader: LoaderService) {
     this.treeFlattener = new MatTreeFlattener(
@@ -46,14 +54,23 @@ export class SchoolClassComponent implements OnInit {
 
     service.dataChange.subscribe(data => {
       this.dataSource.data = data;
-
     });
 
     service.initialize();
   }
 
-  schoolClasses: SchoolClass[] = [];
-  schoolAPICall: { [key: string]: boolean } = {};
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['updatedStudent'].currentValue && this.nodeMap.has(changes['updatedStudent'].currentValue.id)) {
+      const currentStudent: Student = changes['updatedStudent'].currentValue;
+      const node = new LoadMoreNode(
+        currentStudent,
+        false,
+        null,
+      );
+      this.service.nodeMap.set(changes['updatedStudent'].currentValue.id, node);
+    }
+  }
+
 
   ngOnInit(): void {
   }
@@ -122,5 +139,10 @@ export class SchoolClassComponent implements OnInit {
       this.service.loadMore(schoolClassName, Type.Section, node.item.id);
     });
 
+  }
+
+  openDrawer(node: any) {
+    const currentStudent: Student = node.item;
+    this.student.emit(currentStudent);
   }
 }

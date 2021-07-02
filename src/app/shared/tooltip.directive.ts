@@ -18,7 +18,6 @@ export class TooltipDirective {
   @ContentChild('tooltipTemplate') private tooltipTemplateRef: TemplateRef<object>;
 
   @HostListener('mouseenter') onMouseEnter(): void {
-    console.log('this.tooltipTemplate', this.tooltipTemplate);
     const view = this.viewContainerRef.createEmbeddedView(this.tooltipTemplate);
     view.rootNodes.forEach(node =>
       this.renderer.appendChild(this.elementRef.nativeElement, node));

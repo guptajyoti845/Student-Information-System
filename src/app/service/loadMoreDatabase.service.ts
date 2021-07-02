@@ -60,6 +60,7 @@ export class LoadMoreDatabase {
     const nodes = children.slice(0, newChildrenNumber).map((value: Student | Section) => this._generateNode(value));
 
     parent.childrenChange.next(nodes);
+    console.log('the.dataChange', this.dataChange.value);
     this.dataChange.next(this.dataChange.value);
   }
 

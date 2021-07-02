@@ -12,7 +12,7 @@
     <span *ngIf="node.level !==2 else studentDetail">{{node.item.name}}</span>
 
     <ng-template #studentDetail><span class="classList__student" appTooltipDirective
-                                      [tooltipTemplate]="studentTooltip">{{node.item.name}}</span>
+                                      [tooltipTemplate]="studentTooltip" (click)="openDrawer(node)">{{node.item.name}}</span>
     </ng-template>
     <ng-template #studentTooltip>
       <div class="classList__student__tooltip_details">

@@ -45,7 +45,7 @@ export class LoadMoreFlatNode {
     public item: SchoolClass | Student | Section,
     public level = 1,
     public expandable = false,
-    public loadMoreParentItem: string | null = null,
+    public loadMoreParentItem: string | null = null
   ) {
   }
 }

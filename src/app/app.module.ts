@@ -22,6 +22,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {LoaderInterceptor} from './service/loader.interceptor';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {TooltipDirective} from './shared/tooltip.directive';
+import {MatSidenavModule} from '@angular/material/sidenav';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import {TooltipDirective} from './shared/tooltip.directive';
     TooltipDirective
   ],
   imports: [
+    MatSidenavModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
