@@ -3,18 +3,11 @@ import {BrowserModule} from '@angular/platform-browser';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {AppRoutingModule} from './app-routing.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatButtonModule} from '@angular/material/button';
-import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {CommonModule} from '@angular/common';
-import {MatTreeModule} from '@angular/material/tree';
 import {StoreModule} from '@ngrx/store';
-import {MatIconModule} from '@angular/material/icon';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {LoaderInterceptor} from './service/loader.interceptor';
-import {MatTooltipModule} from '@angular/material/tooltip';
 import {TooltipDirective} from './shared/tooltip.directive';
-import {MatSidenavModule} from '@angular/material/sidenav';
 
 import {AppComponent} from './app.component';
 import {SchoolService} from './service/SchoolClass.service';
@@ -25,6 +18,7 @@ import {ToasterService} from './service/toaster.service';
 import {DrawerComponent} from './component/drawer/drawer.component';
 import {LoaderService} from './service/loader.service';
 import {LoadMoreDatabase} from './service/loadMoreDatabase.service';
+import {MatModule} from './mat.module';
 
 @NgModule({
   declarations: [
@@ -36,21 +30,15 @@ import {LoadMoreDatabase} from './service/loadMoreDatabase.service';
     DrawerComponent
   ],
   imports: [
-    MatSidenavModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MatButtonModule,
-    MatButtonToggleModule,
     FormsModule,
     CommonModule,
     ReactiveFormsModule,
-    MatTreeModule,
-    MatIconModule,
-    MatProgressSpinnerModule,
+    MatModule,
     StoreModule.forRoot({}, {}),
-    MatTooltipModule
   ],
   providers: [SchoolService,
     ToasterService,
