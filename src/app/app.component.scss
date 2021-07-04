@@ -1,7 +1,8 @@
 .drawer-container {
-  height: 100vh;
 
   &__side {
+    position: fixed;
+    overflow: hidden;
     padding: 20px;
 
     &__content {
@@ -39,7 +40,6 @@
 
   &__content {
     display: flex;
-    height: 100%;
     align-items: center;
     justify-content: flex-start;
     margin: 0 10%;
