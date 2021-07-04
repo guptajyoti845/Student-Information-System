@@ -33,8 +33,7 @@ export class LoadMoreNode {
 
   constructor(
     public item: SchoolClass | Student | Section,
-    public hasChildren = false,
-    public loadMoreParentItem: string | null = null
+    public hasChildren = false
   ) {
   }
 }

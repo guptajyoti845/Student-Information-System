@@ -63,12 +63,25 @@ export class SchoolClassComponent implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['updatedStudent'].currentValue && this.nodeMap.has(changes['updatedStudent'].currentValue.id)) {
       const currentStudent: Student = changes['updatedStudent'].currentValue;
-      const node = new LoadMoreNode(
+      const loadMoreNode = new LoadMoreNode(
         currentStudent,
-        false,
-        null,
+        false
       );
-      this.service.nodeMap.set(changes['updatedStudent'].currentValue.id, node);
+
+      const loadMoreFlatNode = new LoadMoreFlatNode(
+        currentStudent,
+        2
+      );
+
+      this.service.nodeMap.set(changes['updatedStudent'].currentValue.id, loadMoreNode);
+      this.nodeMap.set(changes['updatedStudent'].currentValue.id, loadMoreFlatNode);
+
+      // @ts-ignore
+      const currentNode = this.nodeMap.get(changes['updatedStudent'].currentValue.id).item;
+
+      // @ts-ignore
+      this.service.loadMore(currentNode.section, Type.Student, currentNode.class.toString());
+
     }
   }
 

@@ -37,8 +37,6 @@ export class AppComponent implements OnInit {
       sports: this.student.sports.map(sport => sport.trim())
     };
 
-    console.log('updated student', this.student);
-
   }
 
   getStudent(student: Student) {

@@ -25,7 +25,7 @@ export class LoadMoreDatabase {
         this.classData.push(scClass);
         this.rootLevelNodes.push(scClass.id);
       });
-      const data = this.classData.map(item => this._generateNode(item));
+      const data: LoadMoreNode[] = this.classData.map(item => this._generateNode(item));
       this.dataChange.next(data);
     }, error => {
       this.showErrorToaster();
@@ -72,7 +72,7 @@ export class LoadMoreDatabase {
     this.dataChange.next(this.dataChange.value);
   }
 
-  private _generateNode(item: Student | Section | SchoolClass): LoadMoreNode {
+   _generateNode(item: Student | Section | SchoolClass): LoadMoreNode {
     if (this.nodeMap.has(item.id)) {
       return this.nodeMap.get(item.id)!;
     }
