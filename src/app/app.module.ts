@@ -6,11 +6,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatButtonModule} from '@angular/material/button';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {UnlessDirective} from './unless.directive';
-import {SectionComponent} from './component/section/section.component';
-import {StudentComponent} from './component/student/student.component';
 import {CommonModule} from '@angular/common';
-import {SlideDrawerComponent} from './slide-drawer/slide-drawer.component';
 import {MatTreeModule} from '@angular/material/tree';
 import {StoreModule} from '@ngrx/store';
 import {MatIconModule} from '@angular/material/icon';
@@ -32,10 +28,6 @@ import { DrawerComponent } from './component/drawer/drawer.component';
   declarations: [
     AppComponent,
     SchoolClassComponent,
-    UnlessDirective,
-    SectionComponent,
-    StudentComponent,
-    SlideDrawerComponent,
     TooltipDirective,
     ToasterContainerComponent,
     ToasterComponent,
