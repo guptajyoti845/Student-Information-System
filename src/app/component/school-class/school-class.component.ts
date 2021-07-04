@@ -118,33 +118,44 @@ export class SchoolClassComponent implements OnInit, OnChanges {
     const className = (<Section> node.item).className;
     const classId = +className;
     const tmp: Student[] = [];
-    this.schoolService.getSortedStudents(classId, node.item.name).subscribe(students => {
-      students.forEach(student => {
-        tmp.push({...student, id: Math.random().toString()});
-      });
 
-      this.service.setStudentForSection(className, node.item.name, tmp);
+    // @ts-ignore
+    if (this.nodeMap.get(node.item.id)?.item.students.length > 0) {
       this.service.loadMore(node.item.name, Type.Student, node.item.id, className);
+    } else {
+      this.schoolService.getSortedStudents(classId, node.item.name).subscribe(students => {
+        students.forEach(student => {
+          tmp.push({...student, id: Math.random().toString()});
+        });
 
-    }, (error) => {
-      this.showErrorToaster();
-    });
+        this.service.setStudentForSection(className, node.item.name, tmp);
+        this.service.loadMore(node.item.name, Type.Student, node.item.id, className);
+
+      }, (error) => {
+        this.showErrorToaster();
+      });
+    }
   }
 
   getSections(node: LoadMoreFlatNode): void {
     const schoolClassName = node.item.name;
-    this.schoolService.getSortedSections(schoolClassName).subscribe(sections => {
-      const tmp: Section[] = [];
-      sections.forEach(section => {
-        const _section = {name: section, students: [], className: schoolClassName, id: Math.random().toString()};
-        tmp.push(_section);
-      });
-      this.service.setSectionForClass(schoolClassName, tmp);
-      this.service.loadMore(schoolClassName, Type.Section, node.item.id);
-    }, (error) => {
-      this.showErrorToaster();
-    });
 
+    // @ts-ignore
+    if (this.nodeMap.get(node.item.id)?.item.sections.length > 0) {
+      this.service.loadMore(schoolClassName, Type.Section, node.item.id);
+    } else {
+      this.schoolService.getSortedSections(schoolClassName).subscribe(sections => {
+        const tmp: Section[] = [];
+        sections.forEach(section => {
+          const _section = {name: section, students: [], className: schoolClassName, id: Math.random().toString()};
+          tmp.push(_section);
+        });
+        this.service.setSectionForClass(schoolClassName, tmp);
+        this.service.loadMore(schoolClassName, Type.Section, node.item.id);
+      }, (error) => {
+        this.showErrorToaster();
+      });
+    }
   }
 
   openDrawer(node: any) {
