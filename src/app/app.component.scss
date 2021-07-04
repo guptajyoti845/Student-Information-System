@@ -41,7 +41,15 @@
   &__content {
     display: flex;
     align-items: center;
+    flex-direction: column;
     justify-content: flex-start;
-    margin: 0 10%;
+    margin: 5% 10%;
   }
+
+  &__heading{
+    text-align: center;
+    font-weight: bold;
+    font-size: 28px;
+  }
+
 }
