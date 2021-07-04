@@ -1,5 +1,5 @@
 <mat-drawer-container class="drawer-container" autosize>
-  <mat-drawer #drawer class="drawer-container__side" mode="push" position="end">
+  <mat-drawer #drawer class="drawer-container__side" mode="side" position="end">
     <ng-container *ngIf="student">
       <form [formGroup]="studentForm" (ngSubmit)="onSubmit()" class="drawer-container__side__content">
         <div class="form-group drawer-container__side__content__field">
