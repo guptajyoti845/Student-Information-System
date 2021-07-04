@@ -10,10 +10,12 @@
     &__name {
       border: 2px solid grey;
       padding: 5px 15px;
+      cursor: pointer;
     }
 
     &__icon {
       position: relative;
+      cursor: pointer;
 
       &__contact {
         position: relative;
@@ -36,8 +38,16 @@
       z-index: 1000;
       color: white;
       min-width: 150px;
-    }
+      border-radius: 10px;
 
+      div {
+        padding: 5px;
+
+        span:first-child {
+          font-weight: bold;
+        }
+      }
+    }
   }
 
 }

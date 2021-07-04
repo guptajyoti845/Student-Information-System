@@ -23,6 +23,8 @@ import {SchoolClassComponent} from './component/school-class/school-class.compon
 import {ToasterComponent} from './component/toaster/toaster.component';
 import {ToasterService} from './service/toaster.service';
 import {DrawerComponent} from './component/drawer/drawer.component';
+import {LoaderService} from './service/loader.service';
+import {LoadMoreDatabase} from './service/loadMoreDatabase.service';
 
 @NgModule({
   declarations: [
@@ -52,6 +54,8 @@ import {DrawerComponent} from './component/drawer/drawer.component';
   ],
   providers: [SchoolService,
     ToasterService,
+    LoaderService,
+    LoadMoreDatabase,
     {provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true}
   ],
   bootstrap: [AppComponent]

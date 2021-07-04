@@ -14,7 +14,7 @@
 
     </button>
 
-    <span *ngIf="node.level !==2 else studentDetail">{{node.item.name}}</span>
+    <span *ngIf="node.level !== 2 else studentDetail">{{node.item.name}}</span>
 
     <ng-template #studentDetail>
       <span class="classList__student__name" (click)="openDrawer(node)">{{node.item.name}}</span>
@@ -27,10 +27,10 @@
 
     <ng-template #studentDetailTooltip>
       <div class="classList__student__tooltip_details">
-        <div>Name : {{node.item.name}}</div>
-        <div>Age: {{node.item.age}}</div>
-        <div>Gender: {{node.item.gender}}</div>
-        <div>Sports: <span *ngFor="let sport of node.item.sports">{{sport}} </span> </div>
+        <div><span>Name :</span> {{node.item.name}}</div>
+        <div><span>Age:</span> {{node.item.age}}</div>
+        <div><span>Gender:</span> {{node.item.gender}}</div>
+        <div><span>Sports:</span> <span *ngFor="let sport of node.item.sports">{{sport}} </span></div>
       </div>
     </ng-template>
 

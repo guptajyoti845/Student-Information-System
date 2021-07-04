@@ -4,9 +4,7 @@ import {LoadMoreNode, SchoolClass, Section, Student, Type} from '../entity/schoo
 import {SchoolService} from './SchoolClass.service';
 import {ToasterService} from './toaster.service';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class LoadMoreDatabase {
   batchNumber = 5;
   dataChange = new BehaviorSubject<LoadMoreNode[]>([]);
