@@ -9,7 +9,6 @@ import {MatDrawer} from '@angular/material/sidenav';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  showFiller = false;
 
   // @ts-ignore
   @ViewChild('drawer') drawer: MatDrawer;
@@ -27,18 +26,23 @@ export class AppComponent implements OnInit {
 
   onSubmit() {
     this.drawer.toggle();
+    if (!(this.studentForm.value.sports instanceof Array)) {
+      this.student = {...this.student, sports: [...this.studentForm.value.sports.split(',')]};
+    }
     this.student = {
       ...this.student,
-      name: this.studentForm.value.username,
+      name: this.studentForm.value.username.trim(),
       age: this.studentForm.value.age,
-      gender: this.studentForm.value.gender,
-      sports: [...this.studentForm.value.sports.split(',')]
+      gender: this.studentForm.value.gender.trim(),
+      sports: this.student.sports.map(sport => sport.trim())
     };
+
+    console.log('updated student', this.student);
+
   }
 
   getStudent(student: Student) {
     this.student = student;
-    console.log('get Student', this.student);
     this.studentForm = new FormGroup({
       'username': new FormControl(this.student.name),
       'gender': new FormControl(this.student.gender),

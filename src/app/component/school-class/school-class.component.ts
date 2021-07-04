@@ -20,7 +20,7 @@ export class SchoolClassComponent implements OnInit, OnChanges {
 
   @Output() student = new EventEmitter<Student>();
 
-  isLoading: Subject<boolean> = this.loader.isLoading;
+  isLoading$: Subject<boolean> = this.loader.isLoading;
 
   nodeMap = new Map<string, LoadMoreFlatNode>();
   // @ts-ignore
@@ -72,7 +72,6 @@ export class SchoolClassComponent implements OnInit, OnChanges {
     }
   }
 
-
   ngOnInit(): void {
   }
 
@@ -106,8 +105,7 @@ export class SchoolClassComponent implements OnInit, OnChanges {
   };
 
   loadChildren(node: LoadMoreFlatNode) {
-    console.log('load more children');
-    console.log('node', node);
+
     if (node.level === 0) {
       this.getSections(node);
     } else if (node.level === 1) {
@@ -153,4 +151,5 @@ export class SchoolClassComponent implements OnInit, OnChanges {
     const currentStudent: Student = node.item;
     this.student.emit(currentStudent);
   }
+
 }

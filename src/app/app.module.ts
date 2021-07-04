@@ -22,7 +22,7 @@ import {ToasterContainerComponent} from './component/toaster-container/toaster-c
 import {SchoolClassComponent} from './component/school-class/school-class.component';
 import {ToasterComponent} from './component/toaster/toaster.component';
 import {ToasterService} from './service/toaster.service';
-import { DrawerComponent } from './component/drawer/drawer.component';
+import {DrawerComponent} from './component/drawer/drawer.component';
 
 @NgModule({
   declarations: [
