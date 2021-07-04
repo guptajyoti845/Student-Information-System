@@ -8,6 +8,13 @@
   &__student {
     position: relative;
 
+    &__icon {
+      position: relative;
+      top: 4px;
+      left: 2px;
+      font-size: 15px;
+    }
+
     &__tooltip_details {
       position: absolute;
       left: 5%;

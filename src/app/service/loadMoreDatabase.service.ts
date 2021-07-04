@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {BehaviorSubject} from 'rxjs';
 import {LoadMoreNode, SchoolClass, Section, Student, Type} from '../entity/schoolClass';
 import {SchoolService} from './SchoolClass.service';
+import {ToasterService} from './toaster.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ export class LoadMoreDatabase {
   dataChange = new BehaviorSubject<LoadMoreNode[]>([]);
   nodeMap = new Map<string, LoadMoreNode>();
 
-  constructor(private schoolService: SchoolService) {
+  constructor(private toaster: ToasterService, private schoolService: SchoolService) {
   }
 
   rootLevelNodes: string[] = [];
@@ -26,7 +27,14 @@ export class LoadMoreDatabase {
       });
       const data = this.classData.map(item => this._generateNode(item));
       this.dataChange.next(data);
+    }, error => {
+      this.showErrorToaster();
+
     });
+  }
+
+  showErrorToaster() {
+    this.toaster.show('error', 'Something went Wrong');
   }
 
   /** Expand a node whose children are not loaded */

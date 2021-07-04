@@ -6,6 +6,7 @@ import {MatTreeFlatDataSource, MatTreeFlattener} from '@angular/material/tree';
 import {LoadMoreDatabase} from '../../service/loadMoreDatabase.service';
 import {Observable, Subject} from 'rxjs';
 import {LoaderService} from '../../service/loader.service';
+import {ToasterService} from '../../service/toaster.service';
 
 @Component({
   selector: 'app-school-class-list',
@@ -34,7 +35,7 @@ export class SchoolClassComponent implements OnInit, OnChanges {
 
   schoolClasses: SchoolClass[] = [];
 
-  constructor(private schoolService: SchoolService, private service: LoadMoreDatabase, private loader: LoaderService) {
+  constructor(private toaster: ToasterService, private schoolService: SchoolService, private service: LoadMoreDatabase, private loader: LoaderService) {
     this.treeFlattener = new MatTreeFlattener(
       this.transformer,
       this.getLevel,
@@ -75,6 +76,10 @@ export class SchoolClassComponent implements OnInit, OnChanges {
   ngOnInit(): void {
   }
 
+  showErrorToaster() {
+    this.toaster.show('error', 'Something went Wrong');
+  }
+
   getChildren = (node: LoadMoreNode): Observable<LoadMoreNode[]> =>
     node.childrenChange;
 
@@ -88,8 +93,7 @@ export class SchoolClassComponent implements OnInit, OnChanges {
     const newNode = new LoadMoreFlatNode(
       node.item,
       level,
-      node.hasChildren,
-      node.loadMoreParentItem
+      node.hasChildren
     );
     this.nodeMap.set(node.item.id, newNode);
     return newNode;
@@ -124,6 +128,8 @@ export class SchoolClassComponent implements OnInit, OnChanges {
       this.service.setStudentForSection(className, node.item.name, tmp);
       this.service.loadMore(node.item.name, Type.Student, node.item.id, className);
 
+    }, (error) => {
+      this.showErrorToaster();
     });
   }
 
@@ -137,6 +143,8 @@ export class SchoolClassComponent implements OnInit, OnChanges {
       });
       this.service.setSectionForClass(schoolClassName, tmp);
       this.service.loadMore(schoolClassName, Type.Section, node.item.id);
+    }, (error) => {
+      this.showErrorToaster();
     });
 
   }

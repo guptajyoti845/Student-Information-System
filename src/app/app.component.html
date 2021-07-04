@@ -1,8 +1,6 @@
 <mat-drawer-container class="example-container" autosize>
-  <mat-drawer #drawer class="example-sidenav" mode="push" position="end">
-    <div *ngIf="student">
-      {{student.name}}
-
+  <mat-drawer #drawer class="slide-drawer" mode="push" position="end">
+    <ng-container *ngIf="student">
       <form [formGroup]="studentForm" (ngSubmit)="onSubmit()">
         <div class="form-group sidebar-slider__sidebar-content__fields">
           <label for="username">Name</label>
@@ -41,10 +39,10 @@
         <button class="btn btn-primary" type="submit">Submit</button>
 
       </form>
-    </div>
-    <button (click)="showFiller = !showFiller" mat-raised-button>
-      Toggle extra text
-    </button>
+      <div class="slide_drawer__close" (click)="drawer.toggle()">
+        <mat-icon>clear</mat-icon>
+      </div>
+    </ng-container>
   </mat-drawer>
 
   <mat-drawer-content class="example-sidenav-content">

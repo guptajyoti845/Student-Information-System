@@ -17,7 +17,7 @@ export class SchoolService {
 
     return this.httpClient.get<GetClassResponse>(classURL).pipe(
       map(response => response.classes),
-      map(arr => arr.sort((a: string, b: string) => Number(a) - Number(b)))
+      map(arr => arr.sort((a: string, b: string) => Number(b) - Number(a)))
     );
   }
 

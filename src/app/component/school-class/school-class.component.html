@@ -11,8 +11,11 @@
     </button>
     <span *ngIf="node.level !==2 else studentDetail">{{node.item.name}}</span>
 
-    <ng-template #studentDetail><span class="classList__student" appTooltipDirective
-                                      [tooltipTemplate]="studentTooltip" (click)="openDrawer(node)">{{node.item.name}}</span>
+    <ng-template #studentDetail><span
+      (click)="openDrawer(node)">{{node.item.name}}</span>
+
+      <span class="classList__student" appTooltipDirective
+            [tooltipTemplate]="studentTooltip"><mat-icon class="classList__student__icon">contact_support</mat-icon></span>
     </ng-template>
     <ng-template #studentTooltip>
       <div class="classList__student__tooltip_details">
@@ -28,3 +31,5 @@
 <div *ngIf="isLoading| async">
   <mat-spinner class="spinner"></mat-spinner>
 </div>
+
+<app-toaster-container></app-toaster-container>

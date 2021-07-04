@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Student} from '../../entity/schoolClass';
+import {Student} from '../entity/schoolClass';
 import {FormControl, FormGroup} from '@angular/forms';
 
 @Component({

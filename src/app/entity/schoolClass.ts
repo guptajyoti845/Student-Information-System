@@ -39,13 +39,11 @@ export class LoadMoreNode {
   }
 }
 
-/** Flat node with expandable and level information */
 export class LoadMoreFlatNode {
   constructor(
     public item: SchoolClass | Student | Section,
     public level = 1,
-    public expandable = false,
-    public loadMoreParentItem: string | null = null
+    public expandable = false
   ) {
   }
 }
