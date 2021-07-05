@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
 import {SchoolService} from '../../service/SchoolClass.service';
-import {LoadMoreFlatNode, LoadMoreNode, SchoolClass, Section, Student, Type} from '../../entity/schoolClass';
+import {LoadMoreFlatNode, LoadMoreNode, Section, Student, Type} from '../../entity/schoolClass';
 import {FlatTreeControl} from '@angular/cdk/tree';
 import {MatTreeFlatDataSource, MatTreeFlattener} from '@angular/material/tree';
 import {LoadMoreDatabase} from '../../service/loadMoreDatabase.service';
@@ -32,8 +32,6 @@ export class SchoolClassComponent implements OnInit, OnChanges {
 
   // @ts-ignore
   public dataSource: MatTreeFlatDataSource<LoadMoreNode, LoadMoreFlatNode>;
-
-  schoolClasses: SchoolClass[] = [];
 
   constructor(private toaster: ToasterService, private schoolService: SchoolService, private service: LoadMoreDatabase, private loader: LoaderService) {
     this.treeFlattener = new MatTreeFlattener(
@@ -80,7 +78,7 @@ export class SchoolClassComponent implements OnInit, OnChanges {
       const currentNode = this.nodeMap.get(changes['updatedStudent'].currentValue.id).item;
 
       // @ts-ignore
-      this.service.loadMore(currentNode.section, Type.Student, currentNode.class.toString());
+      this.service.loadMore(currentNode.section, Type.Student, currentStudent.id, currentNode.class.toString());
 
     }
   }

@@ -30,7 +30,7 @@
         <div><span>Name :</span> {{node.item.name}}</div>
         <div><span>Age:</span> {{node.item.age}}</div>
         <div><span>Gender:</span> {{node.item.gender}}</div>
-        <div><span>Sports:</span> <span *ngFor="let sport of node.item.sports">{{sport}} </span></div>
+        <div><span>Sports:</span> <span>{{node.item.sports.join(',')}} </span></div>
       </div>
     </ng-template>
 

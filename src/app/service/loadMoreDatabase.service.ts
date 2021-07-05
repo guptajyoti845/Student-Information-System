@@ -70,7 +70,7 @@ export class LoadMoreDatabase {
     this.dataChange.next(this.dataChange.value);
   }
 
-   _generateNode(item: Student | Section | SchoolClass): LoadMoreNode {
+  private _generateNode(item: Student | Section | SchoolClass): LoadMoreNode {
     if (this.nodeMap.has(item.id)) {
       return this.nodeMap.get(item.id)!;
     }
@@ -95,4 +95,5 @@ export class LoadMoreDatabase {
     }
 
   }
+
 }
