@@ -1,56 +1,58 @@
-.classList {
-  background-color: #fafafa;
+.schoolClasses {
+  width: 50%;
+  margin: 0 auto;
 
-  &__student_btn {
-    display: none;
+  @media screen and (max-width: 768px) {
+    width: 80%;
   }
 
-  &__student {
+  &__accordion {
+    background-color: #eee;
+    color: #444;
+    cursor: pointer;
+    padding: 18px;
+    width: 50%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+    transition: 0.4s;
+    margin-bottom: 10px;
 
-    &__name {
-      border: 2px solid grey;
-      padding: 5px 15px;
-      cursor: pointer;
+    @media screen and (max-width: 992px) {
+      width: 80%;
     }
 
-    &__icon {
-      position: relative;
-      cursor: pointer;
-
-      &__contact {
-        position: relative;
-        top: 4px;
-        left: 2px;
-        font-size: 20px;
-        color: grey;
-      }
-    }
-
-
-    &__tooltip_details {
-      position: absolute;
-      left: 5%;
-      top: 100%;
-      padding: 10px;
-      background: grey;
-      box-shadow: 0 2px 1px rgba(0, 0, 0, .6);
-      overflow: auto;
-      z-index: 1000;
-      color: white;
-      min-width: 150px;
-      border-radius: 10px;
-
-      div {
-        padding: 5px;
-
-        span:first-child {
-          font-weight: bold;
-        }
-      }
-    }
   }
 
+  &__accordion:hover, &__active {
+    background-color: #ccc;
+  }
+
+  &__accordion:after {
+    content: '\002B';
+    color: #777;
+    font-weight: bold;
+    float: left;
+    margin-right: 10px;
+  }
+
+  &__active:after {
+    content: '\2212';
+  }
+
+  &__panel {
+    background-color: white;
+    width: 50%;
+    overflow: hidden;
+    transition: 0.4s;
+
+    @media screen and (max-width: 768px) {
+      width: 80%;
+    }
+  }
 }
+
 
 .spinner {
   position: absolute;

@@ -1,0 +1,7 @@
+<div *ngFor="let section of sections;let i = index;">
+  <button class="accordion" (click)="onSectionClick($event, i, schoolClass.name, section.name )">
+    Section {{section.name}} </button>
+  <div class="panel" hide="!item.isActive">
+    <app-student [section]="section" *ngIf="(section.students)"></app-student>
+  </div>
+</div>
