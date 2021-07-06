@@ -1,11 +1,21 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Observable} from 'rxjs';
+import {Observable, Subject} from 'rxjs';
 import {map} from 'rxjs/operators';
 import {Student} from '../entity/schoolClass';
 
 @Injectable()
 export class SchoolService {
+  subject = new Subject<Student>();
+
+  sendStudent(student: Student) {
+    this.subject.next(student);
+  }
+
+  getStudent(){
+    return this.subject.asObservable();
+  }
+
   private baseURL = 'https://tw-student-information-system-v1.vercel.app';
 
   constructor(private httpClient: HttpClient) {
@@ -17,7 +27,7 @@ export class SchoolService {
 
     return this.httpClient.get<GetClassResponse>(classURL).pipe(
       map(response => response.classes),
-      map(arr => arr.sort((a: string, b: string) => Number(a) - Number(b)))
+      map(arr => arr.sort((a: string, b: string) => Number(b) - Number(a)))
     );
   }
 

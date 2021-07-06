@@ -2,9 +2,9 @@
   <button class="schoolClasses__accordion" (click)="onClassClick($event, item.name)">
     Class {{item.name}}</button>
   <div class="schoolClasses__panel" hide="!item.isActive">
-    <app-section-list [sections]="item.sections" [schoolClasses]="schoolClasses"
-                      [schoolClass]="item"
-                      *ngIf="(item.sections && item.sections.length)"></app-section-list>
+    <app-section-list
+      [schoolClassName]="item.name"
+      *ngIf="classExpandState[item.name]"></app-section-list>
   </div>
 </div>
 
@@ -12,3 +12,5 @@
 <div *ngIf="isLoading$| async">
   <mat-spinner class="spinner"></mat-spinner>
 </div>
+
+<app-toaster-container></app-toaster-container>

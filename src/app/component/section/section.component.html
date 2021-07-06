@@ -1,7 +1,11 @@
-<div *ngFor="let section of sections;let i = index;">
-  <button class="accordion" (click)="onSectionClick($event, i, schoolClass.name, section.name )">
+<div *ngFor="let section of _sections;let i = index;">
+  <button class="accordion" (click)="onSectionClick($event, i, section.name )">
     Section {{section.name}} </button>
   <div class="panel" hide="!item.isActive">
-    <app-student [section]="section" *ngIf="(section.students)"></app-student>
+    <app-student
+      [sectionName]="section.name" [className]="schoolClassName"
+      *ngIf="(sectionExpandState[section.name])"></app-student>
   </div>
 </div>
+
+<app-toaster-container></app-toaster-container>

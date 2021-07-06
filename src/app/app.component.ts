@@ -2,6 +2,7 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
 import {Student} from './entity/schoolClass';
 import {MatDrawer} from '@angular/material/sidenav';
+import {SchoolService} from './service/SchoolClass.service';
 
 @Component({
   selector: 'app-root',
@@ -19,13 +20,17 @@ export class AppComponent implements OnInit {
   // @ts-ignore
   student: Student;
 
+  constructor(private service: SchoolService) {
+  }
 
   ngOnInit(): void {
+    this.service.getStudent().subscribe(student => {
+      this.getStudent(student);
+    });
 
   }
 
   onSubmit() {
-    this.drawer.toggle();
     if (!(this.studentForm.value.sports instanceof Array)) {
       this.student = {...this.student, sports: [...this.studentForm.value.sports.split(',')]};
     }
@@ -37,9 +42,13 @@ export class AppComponent implements OnInit {
       sports: this.student.sports.map(sport => sport.trim())
     };
 
+    this.service.sendStudent(this.student);
+
+    this.drawer.close();
+
   }
 
-  getStudent(student: Student) {
+  private getStudent(student: Student) {
     this.student = student;
     this.studentForm = new FormGroup({
       'username': new FormControl(this.student.name),
@@ -47,6 +56,6 @@ export class AppComponent implements OnInit {
       'age': new FormControl(this.student.age),
       'sports': new FormControl(this.student.sports)
     });
-    this.drawer.toggle();
+    this.drawer.open();
   }
 }
