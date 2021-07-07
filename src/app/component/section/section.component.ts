@@ -1,5 +1,5 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {SchoolClass, Section, Student} from '../../entity/schoolClass';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Section} from '../../entity/schoolClass';
 import {SchoolService} from '../../service/SchoolClass.service';
 import {ToasterService} from '../../service/toaster.service';
 
@@ -11,34 +11,24 @@ import {ToasterService} from '../../service/toaster.service';
 export class SectionComponent implements OnInit {
 
     // @ts-ignore
-    //@Input() sections: Section[];
-
-    // @ts-ignore
-    //@Input() schoolClasses: SchoolClass[];
-
-    // @ts-ignore
     @Input() schoolClassName: string;
+
+    @Output()
+    updateSectionList = new EventEmitter<Section[]>();
 
     _sections: Section[] = [];
 
     sectionExpandState: { [key: string]: boolean } = {};
 
-
-    studentsAPICall: { [key: string]: boolean } = {};
-
     constructor(private schoolService: SchoolService, private toaster: ToasterService) {
     }
 
-    showErrorToaster() {
+    showErrorToaster(error: string) {
         this.toaster.show('error', 'Something went Wrong');
     }
 
 
     ngOnInit(): void {
-
-
-        const classId = +this.schoolClassName;
-
         this.schoolService.getSortedSections(this.schoolClassName).subscribe(sections => {
             sections.forEach(section => {
 
@@ -49,30 +39,16 @@ export class SectionComponent implements OnInit {
                 this.sectionExpandState[_section.name] = false;
 
             });
-
-            // setTimeout(() => {
-            //     this._toggleAccordian(event, schoolClassName);
-            // }, 0);
-
+            this.updateSectionList.emit(this._sections);
         }, (error) => {
-            this.showErrorToaster();
+            this.showErrorToaster(error);
         });
-
-
-        // this.schoolService.getStudent().subscribe(student => {
-        //     this._updateStudent(student);
-        // });
     }
 
     onSectionClick(event: any, index: number, sectionName: string): void {
-        this.sectionExpandState[sectionName] = !this.sectionExpandState[sectionName];
+        this.sectionExpandState[sectionName] = true;
 
         this._toggleAccordian(event, sectionName);
-        // if (this.studentsAPICall[className + sectionName]) {
-        //     this._toggleAccordian(event, sectionName);
-        //     return;
-        // }
-
     }
 
     private _toggleAccordian(event: any, sectionName: string) {

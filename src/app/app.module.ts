@@ -14,7 +14,6 @@ import {APIService} from './service/api.service';
 import {ToasterContainerComponent} from './component/toaster-container/toaster-container.component';
 import {ToasterComponent} from './component/toaster/toaster.component';
 import {ToasterService} from './service/toaster.service';
-import {DrawerComponent} from './component/drawer/drawer.component';
 import {LoaderService} from './service/loader.service';
 import {MatModule} from './mat.module';
 import {SchoolService} from './service/SchoolClass.service';
@@ -28,7 +27,6 @@ import {StudentComponent} from './component/student/student.component';
     TooltipDirective,
     ToasterContainerComponent,
     ToasterComponent,
-    DrawerComponent,
     SchoolClassComponent,
     SectionComponent,
     StudentComponent

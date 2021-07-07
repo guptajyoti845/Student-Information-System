@@ -53,3 +53,8 @@
   </mat-drawer-content>
 
 </mat-drawer-container>
+
+
+<div *ngIf="isLoading$ | async">
+  <mat-spinner class="spinner"></mat-spinner>
+</div>

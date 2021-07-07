@@ -25,15 +25,14 @@ export class StudentComponent implements OnInit, OnChanges {
     }
 
     ngOnInit(): void {
+        this.schoolService.getStudent().subscribe(val => {
+            console.log('value changed', val);
+            this._updateStudent(val);
+        });
         this.schoolService.getSortedStudents((+this.className), this.sectionName).subscribe(students => {
 
             this._students = students;
 
-            //this.studentsAPICall[this.className + this.sectionName] = true;
-
-            // setTimeout(() => {
-            //     this._toggleAccordian(event, className, sectionName);
-            // }, 0);
         }, (error) => {
             this.showErrorToaster();
         });
@@ -46,12 +45,19 @@ export class StudentComponent implements OnInit, OnChanges {
 
     onStudentClick(student: Student) {
         this.schoolService.sendStudent(student);
-
-        //change  this,students only;
     }
 
     ngOnChanges(changes: SimpleChanges): void {
         console.log('changes', changes);
     }
 
+    private _updateStudent(updatedStudent: Student) {
+        this._students.forEach(student => {
+            if (student.rollNumber === updatedStudent.rollNumber) {
+                student = {...updatedStudent};
+            }
+        });
+
+
+    }
 }
