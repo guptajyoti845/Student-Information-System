@@ -7,6 +7,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {CommonModule} from '@angular/common';
 import {StoreModule} from '@ngrx/store';
 import {TooltipDirective} from './component/shared/tooltip.directive';
+import {StoreDevtoolsModule} from '@ngrx/store-devtools';
+import {environment} from '../environments/environment';
 
 import {AppComponent} from './app.component';
 import {ToasterContainerComponent} from './component/toaster-container/toaster-container.component';
@@ -21,6 +23,7 @@ import {LoaderComponent} from './component/shared/loader/loader.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {LoaderService} from './service/loader.service';
 import {LoaderInterceptor} from './service/loader.interceptor';
+import {reducers} from './state';
 
 @NgModule({
   declarations: [
@@ -43,13 +46,14 @@ import {LoaderInterceptor} from './service/loader.interceptor';
     CommonModule,
     ReactiveFormsModule,
     MatModule,
-    StoreModule.forRoot({}, {}),
-  ],
+    StoreModule.forRoot(reducers, {}),
+    StoreDevtoolsModule.instrument(),
+    StoreDevtoolsModule.instrument({maxAge: 25, logOnly: environment.production}),],
   providers: [
     ToasterService,
     SchoolService,
     LoaderService,
-    { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true }
+    {provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true}
   ],
   bootstrap: [AppComponent]
 })

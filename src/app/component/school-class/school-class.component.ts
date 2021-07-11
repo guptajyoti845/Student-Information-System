@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {SchoolService} from '../../service/SchoolClass.service';
 import {SchoolClass, Section} from '../../entity/schoolClass';
 import {ToasterService} from '../../service/toaster.service';
+import {Store} from '@ngrx/store';
+import {SchoolClassAction} from './action';
 
 @Component({
   selector: 'app-school-class-list',
@@ -11,7 +13,7 @@ import {ToasterService} from '../../service/toaster.service';
 export class SchoolClassComponent implements OnInit {
 
 
-  constructor(private toaster: ToasterService, private schoolService: SchoolService) {
+  constructor(private toaster: ToasterService, private schoolService: SchoolService, private store: Store) {
   }
 
   schoolClasses: SchoolClass[] = [];
@@ -29,6 +31,7 @@ export class SchoolClassComponent implements OnInit {
         this.schoolClasses.push(scClass);
         this.classExpandState[schoolClass] = false;
       });
+      this.store.dispatch(SchoolClassAction.SchoolClassesLoaded({schoolClasses: this.schoolClasses}));
     }, (error) => {
       this.showErrorToaster();
     });
