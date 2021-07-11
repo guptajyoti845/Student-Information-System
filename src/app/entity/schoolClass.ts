@@ -12,14 +12,13 @@ export interface Student {
 }
 
 export interface Section {
-  id: string;
+  isActive?: boolean;
   name: string;
   students: Student[];
-  className: string;
 }
 
 export interface SchoolClass {
-  id: string;
+  isActive?: boolean;
   name: string;
   sections: Section[];
 }

@@ -1,9 +1,16 @@
-import {ContentChild, Directive, ElementRef, HostListener, Input, Renderer2, TemplateRef, ViewContainerRef} from '@angular/core';
+import {
+  ContentChild,
+  Directive,
+  ElementRef,
+  HostListener,
+  Input,
+  Renderer2,
+  TemplateRef,
+  ViewContainerRef
+} from '@angular/core';
 
 @Directive({selector: '[appTooltipDirective]'})
 export class TooltipDirective {
-  // @ts-ignore
-  private tooltipId: string;
 
   constructor(
     private renderer: Renderer2,
@@ -13,9 +20,6 @@ export class TooltipDirective {
 
   // @ts-ignore
   @Input() tooltipTemplate: TemplateRef<any>;
-
-  // @ts-ignore
-  @ContentChild('tooltipTemplate') private tooltipTemplateRef: TemplateRef<object>;
 
   @HostListener('mouseenter') onMouseEnter(): void {
     const view = this.viewContainerRef.createEmbeddedView(this.tooltipTemplate);

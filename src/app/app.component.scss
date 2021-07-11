@@ -38,14 +38,6 @@
     }
   }
 
-  &__content {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    justify-content: flex-start;
-    margin: 5% 10%;
-  }
-
   &__heading{
     text-align: center;
     font-weight: bold;
@@ -53,3 +45,12 @@
   }
 
 }
+
+.spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+

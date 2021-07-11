@@ -1,45 +1,14 @@
-<mat-tree [dataSource]="dataSource" [treeControl]="treeControl" class="classList">
+<div *ngFor="let item of schoolClasses;" class="schoolClasses">
 
-  <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding>
+  <button class="schoolClasses__accordion" (click)="onClassClick($event, item.name)">
+    Class {{item.name}}</button>
 
-
-    <button mat-icon-button
-            [ngClass]="{classList__student_btn: node.level === 2}"
-            [attr.aria-label]="'toggle'"
-            (click)="loadChildren(node)"
-            matTreeNodeToggle>
-      <mat-icon class="mat-icon-rtl-mirror">
-        {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
-      </mat-icon>
-
-    </button>
-
-    <span *ngIf="node.level !== 2 else studentDetail">{{node.item.name}}</span>
-
-    <ng-template #studentDetail>
-      <span class="classList__student__name" (click)="openDrawer(node)">{{node.item.name}}</span>
-
-      <span class="classList__student__icon" appTooltipDirective [tooltipTemplate]="studentDetailTooltip">
-        <mat-icon class="classList__student__icon__contact">contact_support</mat-icon>
-      </span>
-    </ng-template>
-
-
-    <ng-template #studentDetailTooltip>
-      <div class="classList__student__tooltip_details">
-        <div><span>Name :</span> {{node.item.name}}</div>
-        <div><span>Age:</span> {{node.item.age}}</div>
-        <div><span>Gender:</span> {{node.item.gender}}</div>
-        <div><span>Sports:</span> <span>{{node.item.sports.join(',')}} </span></div>
-      </div>
-    </ng-template>
-
-  </mat-tree-node>
-
-</mat-tree>
-
-<div *ngIf="isLoading$| async">
-  <mat-spinner class="spinner"></mat-spinner>
+  <div class="schoolClasses__panel" [hidden]="!item.isActive">
+    <app-section-list *ngIf="classExpandState[item.name]"
+                      [schoolClassName]="item.name"
+                      (updateSectionList)="updateSectionList(item.name, $event)"
+    ></app-section-list>
+  </div>
 </div>
 
 <app-toaster-container></app-toaster-container>

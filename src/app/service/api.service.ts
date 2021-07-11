@@ -1,21 +1,11 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Observable, Subject} from 'rxjs';
+import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
 import {Student} from '../entity/schoolClass';
 
 @Injectable()
-export class SchoolService {
-  subject = new Subject<Student>();
-
-  sendStudent(student: Student) {
-    this.subject.next(student);
-  }
-
-  getStudent(){
-    return this.subject.asObservable();
-  }
-
+export class APIService {
   private baseURL = 'https://tw-student-information-system-v1.vercel.app';
 
   constructor(private httpClient: HttpClient) {

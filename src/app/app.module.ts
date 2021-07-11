@@ -10,24 +10,26 @@ import {LoaderInterceptor} from './service/loader.interceptor';
 import {TooltipDirective} from './shared/tooltip.directive';
 
 import {AppComponent} from './app.component';
-import {SchoolService} from './service/SchoolClass.service';
+import {APIService} from './service/api.service';
 import {ToasterContainerComponent} from './component/toaster-container/toaster-container.component';
-import {SchoolClassComponent} from './component/school-class/school-class.component';
 import {ToasterComponent} from './component/toaster/toaster.component';
 import {ToasterService} from './service/toaster.service';
-import {DrawerComponent} from './component/drawer/drawer.component';
 import {LoaderService} from './service/loader.service';
-import {LoadMoreDatabase} from './service/loadMoreDatabase.service';
 import {MatModule} from './mat.module';
+import {SchoolService} from './service/SchoolClass.service';
+import {SchoolClassComponent} from './component/school-class/school-class.component';
+import {SectionComponent} from './component/section/section.component';
+import {StudentComponent} from './component/student/student.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SchoolClassComponent,
     TooltipDirective,
     ToasterContainerComponent,
     ToasterComponent,
-    DrawerComponent
+    SchoolClassComponent,
+    SectionComponent,
+    StudentComponent
   ],
   imports: [
     BrowserModule,
@@ -40,10 +42,10 @@ import {MatModule} from './mat.module';
     MatModule,
     StoreModule.forRoot({}, {}),
   ],
-  providers: [SchoolService,
+  providers: [APIService,
     ToasterService,
     LoaderService,
-    LoadMoreDatabase,
+    SchoolService,
     {provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true}
   ],
   bootstrap: [AppComponent]

@@ -39,16 +39,22 @@
         <button class="mat-raised-button drawer-container__side__content__submit" type="submit">Submit</button>
 
       </form>
-      <div class="drawer-container__side__close" (click)="drawer.toggle()">
+      <div class="drawer-container__side__close" (click)="drawer.close()">
         <mat-icon>clear</mat-icon>
       </div>
     </ng-container>
   </mat-drawer>
 
-  <mat-drawer-content class="drawer-container__content">
+  <mat-drawer-content>
     <h1 class="drawer-container__heading">Student Information System</h1>
     <h2>Class List</h2>
-    <app-school-class-list (student)="getStudent($event)" [updatedStudent]=student></app-school-class-list>
+    <app-school-class-list></app-school-class-list>
+    <!--    <app-class-list (student)="getStudent($event)" [updatedStudent]=student></app-class-list>-->
   </mat-drawer-content>
 
 </mat-drawer-container>
+
+
+<div *ngIf="isLoading$ | async">
+  <mat-spinner class="spinner"></mat-spinner>
+</div>
