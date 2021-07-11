@@ -25,7 +25,6 @@ export class StudentComponent implements OnInit {
 
   ngOnInit(): void {
     this.schoolService.getStudent().subscribe(val => {
-      console.log('value changed', val);
       this._updateStudent(val);
     });
     this.schoolService.getSortedStudents((+this.className), this.sectionName).subscribe(students => {
