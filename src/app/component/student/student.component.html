@@ -1,8 +1,9 @@
 <div *ngFor="let student of _students;let i = index;" class="students">
 
-  <button class="students__name" appTooltipDirective [tooltipTemplate]="tooltipTemplate"
+  <button class="students__name"
           (click)="onStudentClick(student)">
     {{student.name}} </button>
+  <span appTooltipDirective [tooltipTemplate]="tooltipTemplate"><mat-icon>help</mat-icon></span>
 
   <ng-template #tooltipTemplate>
     <div class="students__tooltip">

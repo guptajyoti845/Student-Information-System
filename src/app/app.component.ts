@@ -3,8 +3,7 @@ import {FormControl, FormGroup} from '@angular/forms';
 import {Student} from './entity/schoolClass';
 import {MatDrawer} from '@angular/material/sidenav';
 import {SchoolService} from './service/SchoolClass.service';
-import {Subject} from 'rxjs';
-import {LoaderService} from './service/loader.service';
+import {HttpClient} from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
@@ -12,8 +11,6 @@ import {LoaderService} from './service/loader.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-
-  isLoading$: Subject<boolean> = this.loader.isLoading;
 
   // @ts-ignore
   @ViewChild('drawer') drawer: MatDrawer;
@@ -24,7 +21,7 @@ export class AppComponent implements OnInit {
   // @ts-ignore
   student: Student;
 
-  constructor(private service: SchoolService, private loader: LoaderService) {
+  constructor(private service: SchoolService) {
   }
 
   ngOnInit(): void {
