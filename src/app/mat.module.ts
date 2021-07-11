@@ -15,7 +15,7 @@ exports:[
   MatTreeModule,
   MatIconModule,
   MatProgressSpinnerModule,
-  MatTooltipModule
+  MatTooltipModule,
 ]
 })
 export class MatModule {

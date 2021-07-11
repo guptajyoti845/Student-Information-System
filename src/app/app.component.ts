@@ -3,6 +3,7 @@ import {FormControl, FormGroup} from '@angular/forms';
 import {Student} from './entity/schoolClass';
 import {MatDrawer} from '@angular/material/sidenav';
 import {SchoolService} from './service/SchoolClass.service';
+import {ToasterService} from './service/toaster.service';
 
 @Component({
   selector: 'app-root',
@@ -20,7 +21,7 @@ export class AppComponent implements OnInit {
   // @ts-ignore
   student: Student;
 
-  constructor(private service: SchoolService) {
+  constructor(private service: SchoolService, private toaster: ToasterService) {
   }
 
   ngOnInit(): void {

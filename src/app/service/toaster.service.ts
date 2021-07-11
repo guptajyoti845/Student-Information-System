@@ -4,7 +4,9 @@ import { ToastType } from './toaster.type';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { filter } from 'rxjs/operators';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class ToasterService {
   subject: BehaviorSubject<Toast>;
   toast$: Observable<Toast>;
@@ -17,7 +19,6 @@ export class ToasterService {
   }
 
   show(type: ToastType, title?: string, body?: string, delay?: number) {
-    // @ts-ignore
     this.subject.next({ type, title, body, delay });
   }
 }

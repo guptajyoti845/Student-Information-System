@@ -9,9 +9,6 @@ import {StoreModule} from '@ngrx/store';
 import {TooltipDirective} from './component/shared/tooltip.directive';
 
 import {AppComponent} from './app.component';
-import {ToasterContainerComponent} from './component/toaster-container/toaster-container.component';
-import {ToasterComponent} from './component/toaster/toaster.component';
-import {ToasterService} from './service/toaster.service';
 import {MatModule} from './mat.module';
 import {SchoolService} from './service/SchoolClass.service';
 import {SchoolClassComponent} from './component/school-class/school-class.component';
@@ -21,17 +18,19 @@ import {LoaderComponent} from './component/shared/loader/loader.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {LoaderService} from './service/loader.service';
 import {LoaderInterceptor} from './service/loader.interceptor';
+import {ToasterContainerComponent} from './component/shared/toaster-container/toaster-container.component';
+import {ToasterComponent} from './component/shared/toaster/toaster.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TooltipDirective,
-    ToasterContainerComponent,
-    ToasterComponent,
     SchoolClassComponent,
     SectionComponent,
     StudentComponent,
-    LoaderComponent
+    LoaderComponent,
+    ToasterContainerComponent,
+    ToasterComponent
   ],
   imports: [
     BrowserModule,
@@ -39,14 +38,12 @@ import {LoaderInterceptor} from './service/loader.interceptor';
     HttpClientModule,
     BrowserAnimationsModule,
     FormsModule,
-    MatProgressSpinnerModule,
     CommonModule,
     ReactiveFormsModule,
     MatModule,
     StoreModule.forRoot({}, {}),
   ],
   providers: [
-    ToasterService,
     SchoolService,
     LoaderService,
     { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true }

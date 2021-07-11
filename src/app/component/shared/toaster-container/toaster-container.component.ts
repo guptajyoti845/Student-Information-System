@@ -1,18 +1,16 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {ToasterService} from '../../service/toaster.service';
-import {Toast} from '../../service/toaster.interface';
+import { Component, OnInit } from '@angular/core';
+import {ToasterService} from '../../../service/toaster.service';
+import {Toast} from '../../../service/toaster.interface';
 
 @Component({
   selector: 'app-toaster-container',
   templateUrl: './toaster-container.component.html',
-  styles: []
+  styleUrls: ['./toaster-container.component.scss']
 })
 export class ToasterContainerComponent implements OnInit {
-
   toasts: Toast[] = [];
 
-  constructor(public toaster: ToasterService) {
-  }
+  constructor(public toaster: ToasterService) {}
 
   ngOnInit() {
     this.toaster.toast$
@@ -24,6 +22,7 @@ export class ToasterContainerComponent implements OnInit {
 
   remove(index: number) {
     this.toasts = this.toasts.filter((v, i) => i !== index);
-    //this.toasts.splice(index, 1);
+    this.toasts.splice(index, 1);
   }
+
 }

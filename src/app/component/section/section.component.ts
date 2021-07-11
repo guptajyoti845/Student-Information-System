@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
 import {Section} from '../../entity/schoolClass';
 import {SchoolService} from '../../service/SchoolClass.service';
 import {ToasterService} from '../../service/toaster.service';
@@ -57,6 +57,7 @@ export class SectionComponent implements OnInit {
     }
 
   }
+
 
   onSectionClick(event: any, index: number, sectionName: string): void {
     this.sectionExpandState[sectionName] = true;

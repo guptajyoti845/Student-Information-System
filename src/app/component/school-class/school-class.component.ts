@@ -11,7 +11,7 @@ import {ToasterService} from '../../service/toaster.service';
 export class SchoolClassComponent implements OnInit {
 
 
-  constructor(private toaster: ToasterService, private schoolService: SchoolService) {
+  constructor(private schoolService: SchoolService, private toaster: ToasterService) {
   }
 
   schoolClasses: SchoolClass[] = [];

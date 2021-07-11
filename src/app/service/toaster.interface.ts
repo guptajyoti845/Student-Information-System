@@ -2,7 +2,7 @@ import { ToastType } from './toaster.type';
 
 export interface Toast {
   type: ToastType;
-  title: string;
-  body: string;
-  delay: number;
+  title: string | undefined;
+  body: string | undefined;
+  delay: number | undefined;
 }
