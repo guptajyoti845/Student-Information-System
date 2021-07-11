@@ -3,7 +3,6 @@ import {FormControl, FormGroup} from '@angular/forms';
 import {Student} from './entity/schoolClass';
 import {MatDrawer} from '@angular/material/sidenav';
 import {SchoolService} from './service/SchoolClass.service';
-import {HttpClient} from '@angular/common/http';
 
 @Component({
   selector: 'app-root',

@@ -18,20 +18,31 @@ export class SchoolClassComponent implements OnInit {
   schoolAPICall: { [key: string]: boolean } = {};
   classExpandState: { [key: string]: boolean } = {};
 
-  showErrorToaster() {
+  showErrorToaster(error: Error) {
     this.toaster.show('error', 'Something went Wrong');
   }
 
   ngOnInit(): void {
-    this.schoolService.getSortedClasses().subscribe((schoolClasses) => {
-      schoolClasses.forEach((schoolClass) => {
-        const scClass: SchoolClass = {name: schoolClass, sections: []};
-        this.schoolClasses.push(scClass);
-        this.classExpandState[schoolClass] = false;
+    if (!localStorage.getItem('classes')) {
+      this.schoolService.getSortedClasses().subscribe((schoolClasses) => {
+        schoolClasses.forEach((schoolClass) => {
+          const scClass: SchoolClass = {name: schoolClass, sections: []};
+          this.schoolClasses.push(scClass);
+          this.classExpandState[schoolClass] = false;
+        });
+        localStorage.setItem('classes', JSON.stringify(this.schoolClasses));
+      }, (error) => {
+        this.showErrorToaster(error);
       });
-    }, (error) => {
-      this.showErrorToaster();
-    });
+    } else {
+      // @ts-ignore
+      this.schoolClasses = JSON.parse(localStorage.getItem('classes'));
+      this.schoolClasses.forEach(schoolClass => {
+        this.classExpandState[schoolClass.name] = false;
+      });
+    }
+
+
   }
 
   onClassClick(event: any, schoolClassName: string): void {
@@ -65,5 +76,6 @@ export class SchoolClassComponent implements OnInit {
     const schoolClass = this.schoolClasses.find(schoolClass => schoolClass.name === name);
     // @ts-ignore
     schoolClass.sections = sections;
+    localStorage.setItem('classes', JSON.stringify(this.schoolClasses));
   }
 }

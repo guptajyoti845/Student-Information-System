@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Student} from '../../entity/schoolClass';
+import {SchoolClass, Section, Student} from '../../entity/schoolClass';
 import {SchoolService} from '../../service/SchoolClass.service';
 import {ToasterService} from '../../service/toaster.service';
 
@@ -24,18 +24,28 @@ export class StudentComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    // @ts-ignore
+    const localState = JSON.parse(localStorage.getItem('classes'));
+    const currentClassState = localState.find((item: SchoolClass) => item.name === this.className);
+    const currentSectionState = currentClassState.sections.find((section: Section) => section.name === this.sectionName);
+
+    if (currentSectionState.students.length === 0) {
+      this.schoolService.getSortedStudents((+this.className), this.sectionName).subscribe(students => {
+        this._students = students;
+        this._updateStudentState(this._students);
+      }, (error) => {
+        this.showErrorToaster(error);
+      });
+    } else {
+      this._students = currentSectionState.students;
+    }
+
     this.schoolService.getStudent().subscribe(val => {
       this._updateStudent(val);
     });
-    this.schoolService.getSortedStudents((+this.className), this.sectionName).subscribe(students => {
-      this._students = students;
-
-    }, (error) => {
-      this.showErrorToaster();
-    });
   }
 
-  showErrorToaster() {
+  showErrorToaster(error: Error) {
     this.toaster.show('error', 'Something went Wrong');
   }
 
@@ -49,12 +59,32 @@ export class StudentComponent implements OnInit {
     this._students = this._students.map(student => {
       if (student.rollNumber === updatedStudent.rollNumber) {
         student = {...updatedStudent};
-      } else {
-        student = student;
       }
-
       return student;
     });
+
+    this._updateStudentState(this._students);
+  }
+
+  private _updateStudentState(students: Student[]) {
+    // @ts-ignore
+    const localState: SchoolClass[] = JSON.parse(localStorage.getItem('classes'));
+
+    const currentClassState = localState.find((item: SchoolClass) => item.name === this.className);
+
+    const currentSectionState = currentClassState?.sections.find((section: Section) => section.name === this.sectionName);
+
+    // @ts-ignore
+    currentSectionState.students = students;
+
+    localState.forEach(item => {
+      if (item.name === currentClassState?.name) {
+        item = {...currentClassState};
+      }
+
+    });
+
+    localStorage.setItem('classes', JSON.stringify(localState));
 
   }
 }

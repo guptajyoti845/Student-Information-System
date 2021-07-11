@@ -3,7 +3,12 @@
   margin: 10px;
   position: relative;
 
+  &__help {
+    cursor: pointer;
+  }
+
   &__name {
+    cursor: default;
     color: white;
     border-radius: 3px;
     padding: 10px;

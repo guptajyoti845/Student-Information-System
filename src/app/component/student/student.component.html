@@ -3,7 +3,7 @@
   <button class="students__name"
           (click)="onStudentClick(student)">
     {{student.name}} </button>
-  <span appTooltipDirective [tooltipTemplate]="tooltipTemplate"><mat-icon>help</mat-icon></span>
+  <span class="students__help" appTooltipDirective [tooltipTemplate]="tooltipTemplate"><mat-icon>help</mat-icon></span>
 
   <ng-template #tooltipTemplate>
     <div class="students__tooltip">
