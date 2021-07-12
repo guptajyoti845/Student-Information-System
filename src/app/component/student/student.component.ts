@@ -46,7 +46,7 @@ export class StudentComponent implements OnInit {
   }
 
   showErrorToaster(error: Error) {
-    this.toaster.show('error', 'Something went Wrong');
+    this.toaster.show('error', 'Something went Wrong in Students');
   }
 
 

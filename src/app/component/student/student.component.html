@@ -7,10 +7,10 @@
 
   <ng-template #tooltipTemplate>
     <div class="students__tooltip">
-      <div><span>Name :</span> {{student.name}}</div>
-      <div><span>Age:</span> {{student.age}}</div>
-      <div><span>Gender:</span> {{student.gender}}</div>
-      <div><span>Sports:</span> <span> {{student.sports.join(',')}} </span></div>
+      <div *ngIf="student.name"><span>Name :</span> {{student.name}}</div>
+      <div *ngIf="student.age"><span>Age:</span> {{student.age}}</div>
+      <div *ngIf="student.gender"><span>Gender:</span> {{student.gender}}</div>
+      <div><span>Sports:</span> <span>{{student.sports.join(',')}} </span></div>
     </div>
   </ng-template>
 </div>

@@ -1,4 +1,4 @@
-<mat-drawer-container class="drawer-container" autosize>
+<mat-drawer-container class="drawer-container" autosize [hasBackdrop]="false">
   <mat-drawer #drawer class="drawer-container__side" position="end">
     <ng-container *ngIf="student">
       <form [formGroup]="studentForm" (ngSubmit)="onSubmit()" class="drawer-container__side__content">
@@ -53,4 +53,4 @@
 
 <app-loader></app-loader>
 
-<app-toaster-container></app-toaster-container>
+

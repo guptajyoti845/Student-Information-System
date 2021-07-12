@@ -24,7 +24,7 @@ export class SectionComponent implements OnInit {
   }
 
   showErrorToaster(error: string) {
-    this.toaster.show('error', 'Something went Wrong');
+    this.toaster.show('error', 'Something went Wrong in Section');
   }
 
 
@@ -60,7 +60,7 @@ export class SectionComponent implements OnInit {
 
 
   onSectionClick(event: any, index: number, sectionName: string): void {
-    this.sectionExpandState[sectionName] = true;
+    this.sectionExpandState[sectionName] = !this.sectionExpandState[sectionName];
 
     this._toggleAccordian(event, sectionName);
   }

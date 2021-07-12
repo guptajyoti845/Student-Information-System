@@ -19,7 +19,7 @@ export class SchoolClassComponent implements OnInit {
   classExpandState: { [key: string]: boolean } = {};
 
   showErrorToaster(error: Error) {
-    this.toaster.show('error', 'Something went Wrong');
+    this.toaster.show('error', 'Something went Wrong in Classes');
   }
 
   ngOnInit(): void {
@@ -46,7 +46,7 @@ export class SchoolClassComponent implements OnInit {
   }
 
   onClassClick(event: any, schoolClassName: string): void {
-    this.classExpandState[schoolClassName] = true;
+    this.classExpandState[schoolClassName] = !this.classExpandState[schoolClassName];
 
     this._toggleAccordian(event, schoolClassName);
   }
